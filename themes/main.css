@@ -63,6 +63,7 @@ body {
 .posting .postarea {
 	display: block;
 	border: none;
+	resize: none;
 	padding: 16px;
 	border-radius: 16px 16px 0px 0px;
 	width: 100%;
