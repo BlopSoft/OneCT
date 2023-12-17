@@ -1,0 +1,55 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+
+DROP TABLE IF EXISTS `post`;
+CREATE TABLE `post` (
+  `id` int(16) NOT NULL,
+  `id_user` int(16) NOT NULL,
+  `id_who` int(16) NOT NULL,
+  `post` varchar(512) CHARACTER SET utf8mb4 NOT NULL,
+  `img` varchar(256) DEFAULT NULL,
+  `pin` int(1) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(16) NOT NULL,
+  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pass` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descr` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gif` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ban` int(1) NOT NULL DEFAULT '0',
+  `yespost` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  `priv` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `post`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `post`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `users`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
