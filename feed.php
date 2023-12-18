@@ -23,7 +23,7 @@
 			<a href="reg.php">Регестрироваться</a>
 		<?php endif; ?>
 	</div>
-	<div>
+	<div class="main_app">
 		<?php
 			$stena = mysqli_query($db, "SELECT * FROM post ORDER BY date DESC");	 		
 					

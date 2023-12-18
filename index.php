@@ -55,105 +55,106 @@
 			<a href="reg.php">Регестрироваться</a>
 		<?php endif; ?>
 	</div>
-	<div class="main">
-		<?php if(isset($_SESSION['user'])): ?>
-			<div class="changeuser">
-				<a href="change.php">Изменить аккаунт</a>
-			</div>
-			<h1 style="color: <?php echo($all['color']); ?>;">
-				<?php echo(strip_tags($all['name'])); ?>
-				<?php 
-					if(!empty(trim($all['gif']))){
-						echo('<img height="32px" src="' .$all['gif']. '">');
-					} else {
-						echo('');
-					} 
-				?>
-				<?php 
-					if ($all['priv'] == 1){ 
-						echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
-					} else {
-						echo('');
-					}
-				?>
-			</h1>
-			<h1>Почта: <?php echo $all['email']; ?></h1>
-			<h1>О себе: <?php echo(strip_tags($all['descr'])); ?></h1>
-			</div>
-			<h1 class="head">Стена</h1>
-			<div class="wall">
-				<form action="index.php" method="post" class="posting">
-					<textarea name="post" class="postarea"></textarea>
-					<button type="submit" name="do_post" class="do_post">Опубликовать</button>
-					<details>
-						<summary>Прикрепить</summary>
-						<p>Изображение:</p>
-						<input placeholder="Ссылка на изображение" name="img" class="imginput">
-					</details>
+	<div class="main_app">
+		<div class="main">
+			<?php if(isset($_SESSION['user'])): ?>
+				<div class="changeuser">
+					<a href="change.php">Изменить аккаунт</a>
+				</div>
+				<h1 style="color: <?php echo($all['color']); ?>;">
+					<?php echo(strip_tags($all['name'])); ?>
 					<?php 
-						if(!empty($errors)){
-							echo ('<p>'.array_shift($errors).'</p>');
+						if(!empty(trim($all['gif']))){
+							echo('<img height="32px" src="' .$all['gif']. '">');
+						} else {
+							echo('');
+						} 
+					?>
+					<?php 
+						if ($all['priv'] == 1){ 
+							echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
+						} else {
+							echo('');
 						}
 					?>
-				</form>
-				<?php
-					sleep(1);
-					$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .$_SESSION['user']. "' ORDER BY pin DESC, date DESC");	 		
-					
-					while($list = mysqli_fetch_assoc($stena)){
-						echo('<div class="post">');
-
-						$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
-					
-							echo('<b>');
-								echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-									echo(strip_tags($user['name']));
-								echo('</a>');
-							echo('</b>');
-
-							if($list['pin'] == 1){
-								echo('  Закреплено');
-							} else {
-								echo('');
+				</h1>
+				<h1>Почта: <?php echo $all['email']; ?></h1>
+				<h1>О себе: <?php echo(strip_tags($all['descr'])); ?></h1>
+				</div>
+				<h1 class="head">Стена</h1>
+				<div class="wall">
+					<form action="index.php" method="post" class="posting">
+						<textarea name="post" class="postarea"></textarea>
+						<button type="submit" name="do_post" class="do_post">Опубликовать</button>
+						<details>
+							<summary>Прикрепить</summary>
+							<p>Изображение:</p>
+							<input placeholder="Ссылка на изображение" name="img" class="imginput">
+						</details>
+						<?php 
+							if(!empty($errors)){
+								echo ('<p>'.array_shift($errors).'</p>');
 							}
+						?>
+					</form>
+					<?php
+						sleep(1);
+						$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .$_SESSION['user']. "' ORDER BY pin DESC, date DESC");	 		
+						
+						while($list = mysqli_fetch_assoc($stena)){
+							echo('<div class="post">');
 
-							echo('<a href="method/delpost.php?id=' .$list['id']. '">');
-								echo('<span class="material-symbols-outlined">');
-									echo('close');
-								echo('</span>');
-							echo('</a>');
-							echo('<a href="method/pinpost.php?id=' .$list['id']. '">');
-								echo('<span class="material-symbols-outlined">');
-									echo('push_pin');
-								echo('</span><br>');
-							echo('</a>');
-							echo('<span class="date">');
-								echo($list['date']);
-							echo('</span><br>');	
+							$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
+						
+								echo('<b>');
+									echo('<a class="user" href="user.php?id=' .$user['id']. '">');
+										echo(strip_tags($user['name']));
+									echo('</a>');
+								echo('</b>');
 
-						$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
-
-							echo('<b>От имени: ');
-								echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-									echo(strip_tags($user['name']));
-								echo('</a>');
-							echo('</b>');
-
-								if(!empty(trim($list['img']))){
-									echo('<img width="100%" src="' .$list['img']. '">');
+								if($list['pin'] == 1){
+									echo('  Закреплено');
 								} else {
 									echo('');
 								}
 
-								echo('<p>' .strip_tags($list['post']). '</p>');
-						echo('</div>');
-					};
-				?>
-				<br>
-			</div>
-		<?php else : ?>
-			<h1>Добро пожаловать в <?php echo($sitename); ?>!</h1>
-			<p>Для того чтобы использовать <?php echo($sitename); ?> то надо войти или зарегестрировать аккаунт</p>
-		<?php endif; ?>
+								echo('<a href="method/delpost.php?id=' .$list['id']. '">');
+									echo('<span class="material-symbols-outlined">');
+										echo('close');
+									echo('</span>');
+								echo('</a>');
+								echo('<a href="method/pinpost.php?id=' .$list['id']. '">');
+									echo('<span class="material-symbols-outlined">');
+										echo('push_pin');
+									echo('</span><br>');
+								echo('</a>');
+								echo('<span class="date">');
+									echo($list['date']);
+								echo('</span><br>');	
+
+							$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
+
+								echo('<b>От имени: ');
+									echo('<a class="user" href="user.php?id=' .$user['id']. '">');
+										echo(strip_tags($user['name']));
+									echo('</a>');
+								echo('</b>');
+
+									if(!empty(trim($list['img']))){
+										echo('<img width="100%" src="' .$list['img']. '">');
+									} else {
+										echo('');
+									}
+
+									echo('<p>' .strip_tags($list['post']). '</p>');
+							echo('</div>');
+						};
+					?>
+				</div>
+			<?php else : ?>
+				<h1>Добро пожаловать в <?php echo($sitename); ?>!</h1>
+				<p>Для того чтобы использовать <?php echo($sitename); ?> то надо войти или зарегестрировать аккаунт</p>
+			<?php endif; ?>
+	</div>
 </body>
 </html>

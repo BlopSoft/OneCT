@@ -30,16 +30,18 @@
 		<a href="allusers.php">Все пользователи</a>
 		<a href="index.php">Домой</a>
 	</div>
-	<div class="main" align="left">
-		<form action="delete.php" method="POST">
-			<p>
-				<h1>ВЫ ТОЧНО ХОТИТЕ УДАЛИТЬ АККАУНТ?</h1>
-			</p>
-			<p>
-				<button type="submit" name="do_del">Да</button>
-				<button type="submit" name="do_no">Нет</button>
-			</p>
-		</form>
+	<div class="main_app">
+		<div class="main">
+			<form action="delete.php" method="POST">
+				<p>
+					<h1>ВЫ ТОЧНО ХОТИТЕ УДАЛИТЬ АККАУНТ?</h1>
+				</p>
+				<p>
+					<button type="submit" name="do_del">Да</button>
+					<button type="submit" name="do_no">Нет</button>
+				</p>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

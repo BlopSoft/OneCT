@@ -1,9 +1,9 @@
 <?php
 	require_once "include/config.php";
 
-	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = "' .$_GET['id']. '"'));
+	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = "' .(int)$_GET['id']. '"'));
 
-	if($_SESSION['user'] == $_GET['id']){
+	if($_SESSION['user'] == (int)$_GET['id']){
 		header("Location: index.php");
 	}
 
@@ -64,89 +64,93 @@
 			<a href="reg.php">Регестрироваться</a>
 		<?php endif; ?>
 	</div>
-	<div class="main">
-		<h1 style="color: <?php echo($all['color']); ?>;">
-			<?php echo(strip_tags($all['name'])); ?>
-			<?php 
-				if(!empty(trim($all['gif']))){
-					echo('<img height="32px" src="' .$all['gif']. '">');
-				} else {
-					echo('');
-				} 
-			?>
-			<?php 
-				if ($all['priv'] == 1){ 
-					echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
-				} else {
-					echo('');
-				}
-			?>
-		</h1>
-		<h1>Описание: <?php echo(strip_tags($all['descr'])); ?></h1>
-	</div>
-		<h1 class="head">Стена</h1>
-		<div class="wall">
-		<form action="user.php?id=<?php echo($_GET['id']); ?>" method="post" class="posting">
-			<?php if(isset($_SESSION['user'])): ?>
-				<?php if($all['yespost'] == "1"): ?>
-					<textarea name="post" class="postarea"></textarea>
-					<button type="submit" name="do_post" class="do_post">Опубликовать</button>
-					<?php 
-						if(!empty($errors)){
-							echo ('<p>'.array_shift($errors).'</p>');
-						}
-					?>
-				<?php else : ?>
-					<p>Пользователь запретил добавлять посты других пользователей на свою стену</p>
-				<?php endif; ?>
-			<?php else : ?>
-				<p>Нужно зарегестрироваться или войти в аккаунт чтобы публиковать посты в стену</p>
-			<?php endif; ?>
-		</form>
-		<?php
-			$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .$_GET['id']. "' ORDER BY pin DESC, date DESC");	 		
-			
-			while($list = mysqli_fetch_assoc($stena)){
-				echo('<div class="post">');
+	<div class="main_app">
+		<div class="main">
+			<h1 style="color: <?php echo($all['color']); ?>;">
+				<?php echo(strip_tags($all['name'])); ?>
+				<?php 
 
-				$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
-					
-					echo('<b>');
-						echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-							echo(strip_tags($user['name']));
-						echo('</a>');
-					echo('</b>');
-
-					if($list['pin'] == 1){
-						echo('  Закреплено');
+				
+					if(!empty(trim($all['gif']))){
+						echo('<img height="32px" src="' .$all['gif']. '">');
+					} else {
+						echo('');
+					} 
+				?>
+				<?php 
+					if ($all['priv'] == 1){ 
+						echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
 					} else {
 						echo('');
 					}
+				?>
+			</h1>
+			<h1>Описание: <?php echo(strip_tags($all['descr'])); ?></h1>
+		</div>
+			<h1 class="head">Стена</h1>
+			<div class="wall">
+			<form action="user.php?id=<?php echo($_GET['id']); ?>" method="post" class="posting">
+				<?php if(isset($_SESSION['user'])): ?>
+					<?php if($all['yespost'] == "1"): ?>
+						<textarea name="post" class="postarea"></textarea>
+						<button type="submit" name="do_post" class="do_post">Опубликовать</button>
+						<?php 
+							if(!empty($errors)){
+								echo ('<p>'.array_shift($errors).'</p>');
+							}
+						?>
+					<?php else : ?>
+						<p>Пользователь запретил добавлять посты других пользователей на свою стену</p>
+					<?php endif; ?>
+				<?php else : ?>
+					<p>Нужно зарегестрироваться или войти в аккаунт чтобы публиковать посты в стену</p>
+				<?php endif; ?>
+			</form>
+			<?php
+				$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .(int)$_GET['id']. "' ORDER BY pin DESC, date DESC");	 		
+				
+				while($list = mysqli_fetch_assoc($stena)){
+					echo('<div class="post">');
 
-					echo('<br>');
+					$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
+						
+						echo('<b>');
+							echo('<a class="user" href="user.php?id=' .$user['id']. '">');
+								echo(strip_tags($user['name']));
+							echo('</a>');
+						echo('</b>');
 
-					echo('<span class="date">');
-						echo($list['date']);
-					echo('</span><br>');	
-
-				$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
-
-					echo('<b>От имени: ');
-						echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-							echo(strip_tags($user['name']));
-						echo('</a>');
-					echo('</b>');
-
-						if(!empty(trim($list['img']))){
-							echo('<img width="100%" src="' .$list['img']. '">');
+						if($list['pin'] == 1){
+							echo('  Закреплено');
 						} else {
 							echo('');
 						}
 
-						echo('<p>' .strip_tags($list['post']). '</p>');
-				echo('</div>');
-			};
-		?>
+						echo('<br>');
+
+						echo('<span class="date">');
+							echo($list['date']);
+						echo('</span><br>');	
+
+					$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
+
+						echo('<b>От имени: ');
+							echo('<a class="user" href="user.php?id=' .$user['id']. '">');
+								echo(strip_tags($user['name']));
+							echo('</a>');
+						echo('</b>');
+
+							if(!empty(trim($list['img']))){
+								echo('<img width="100%" src="' .$list['img']. '">');
+							} else {
+								echo('');
+							}
+
+							echo('<p>' .strip_tags($list['post']). '</p>');
+					echo('</div>');
+				};
+			?>
+		</div>
 	</div>
 </body>
 </html>

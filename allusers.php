@@ -23,36 +23,38 @@
 			<a href="reg.php">Регестрироваться</a>
 		<?php endif; ?>
 	</div>
-	<div class="main">
-		<?php 
-			$countUsers = mysqli_fetch_assoc(mysqli_query($db, 'SELECT COUNT(*) FROM users')); 
-			echo '<p>На сайте всего: ' .$countUsers['COUNT(*)']. ' пользователей</p>'; 
+	<div class="main_app">
+		<div class="main">
+			<?php 
+				$countUsers = mysqli_fetch_assoc(mysqli_query($db, 'SELECT COUNT(*) FROM users')); 
+				echo '<p>На сайте всего: ' .$countUsers['COUNT(*)']. ' пользователей</p>'; 
 
-			$allUsers = mysqli_query($db, 'SELECT id, name, priv, gif, color FROM users');
-			
-			while($list = mysqli_fetch_assoc($allUsers)){
-				echo('<div class="user">');
-					echo('<a href="user.php?id=' .$list['id']. '">');
-						echo('<h1 style="color: '. $list['color']. '">');
-							echo(strip_tags($list['name']));
+				$allUsers = mysqli_query($db, 'SELECT id, name, priv, gif, color FROM users');
+				
+				while($list = mysqli_fetch_assoc($allUsers)){
+					echo('<div class="user">');
+						echo('<a href="user.php?id=' .$list['id']. '">');
+							echo('<h1 style="color: '. $list['color']. '">');
+								echo(strip_tags($list['name']));
 
-							if(!empty(trim($list['gif']))){
-								echo('<img height="32px" src="' .$list['gif']. '">');
-							} else {
-								echo('');
-							} 
+								if(!empty(trim($list['gif']))){
+									echo('<img height="32px" src="' .$list['gif']. '">');
+								} else {
+									echo('');
+								} 
 
-							if ($list['priv'] == 1){ 
-								echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
-							} else {
-								echo('');
-							}
+								if ($list['priv'] == 1){ 
+									echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
+								} else {
+									echo('');
+								}
 
-						echo('</h1>');
-					echo('</a>');
-				echo('</div>');
-			}
-		?>
+							echo('</h1>');
+						echo('</a>');
+					echo('</div>');
+				}
+			?>
+		</div>
 	</div>
 </body>
 </html>

@@ -31,27 +31,29 @@
 	<div class="header">
 		<a href="reg.php">Регестрироваться</a>
 	</div>
-	<div class="main">
-		<form action="login.php" method="POST">
-			<p>
-				<p>Логин:</p>
-				<input type="email" name="email">
-			</p>
-			<p>
-				<p>Пароль:</p>
-				<input type="password" name="pass">
-			</p>
-			<p>
-				<button type="submit" name="do_login">Войти</button>
-			</p>
-		</form>
-	</div>
-	<div>
-		<?php 
-			if(!empty($errors))  {
-				echo ('<p>'.array_shift($errors).'</p>');
-			}
-		?>
+	<div class="main_app">
+		<div class="main">
+			<form action="login.php" method="POST">
+				<p>
+					<p>Логин:</p>
+					<input type="email" name="email">
+				</p>
+				<p>
+					<p>Пароль:</p>
+					<input type="password" name="pass">
+				</p>
+				<p>
+					<button type="submit" name="do_login">Войти</button>
+				</p>
+			</form>
+		</div>
+		<div>
+			<?php 
+				if(!empty($errors))  {
+					echo ('<p>'.array_shift($errors).'</p>');
+				}
+			?>
+		</div>
 	</div>
 </body>
 </html>
