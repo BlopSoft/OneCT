@@ -17,7 +17,7 @@
         $dbconn['db']
     );
 
-    mysqli_set_charset($db,"utf8");
+    mysqli_set_charset($db,"utf8mb4");
 
     if( $db == false ){
         echo('Ошибка подключение базы данных');
