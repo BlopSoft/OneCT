@@ -32,7 +32,7 @@
 			$post = "INSERT INTO post(id_user, id_who, post) VALUES (
 				'" .$_GET['id']. "',
 				'" .$_SESSION['user']. "',
-				'" .strip_tags($_POST['post']). "')";
+				'" .mysqli_real_escape_string($db, strip_tags($_POST['post'])). "')";
 
 			if(mysqli_query($db, $post)){
 				header("Location: ");

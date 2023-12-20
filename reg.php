@@ -46,11 +46,11 @@
 				$checkemail = 'SELECT email FROM users WHERE email = "' .$_POST['email']. '"';
 				$checkip = 'SELECT ip FROM users WHERE ip = "' .$_SERVER['REMOTE_ADDR']. '"';
 				$createacc = 'INSERT INTO users(name, email, pass, ip, descr) VALUES (
-					"' .$_POST['username']. '", 
-					"' .$_POST['email']. '", 
-					"' .password_hash($_POST['pass'], PASSWORD_DEFAULT). '", 
-					"' .$_SERVER['REMOTE_ADDR']. '", 
-					"' .$_POST['descr']. '")';
+					"' .mysqli_real_escape_string($db, $_POST['username']). '", 
+					"' .mysqli_real_escape_string($db, $_POST['email']). '", 
+					"' .mysqli_real_escape_string($db, password_hash($_POST['pass'], PASSWORD_DEFAULT)). '", 
+					"' .mysqli_real_escape_string($db, $_SERVER['REMOTE_ADDR']). '", 
+					"' .mysqli_real_escape_string($db, $_POST['descr']). '")';
 						
 				if(isset($_POST['do_signup'])){
 					$errors = array();

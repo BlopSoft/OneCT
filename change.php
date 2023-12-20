@@ -51,11 +51,11 @@
 			</form>
 			<?php 
 				$change = "UPDATE users SET 
-					name = '" .strip_tags($_POST['username']). "', 
-					descr = '" .strip_tags($_POST['descr'])."', 
-					gif = '" .$_POST['gif']. "', 
+					name = '" .mysqli_real_escape_string($db, strip_tags($_POST['username'])). "', 
+					descr = '" .mysqli_real_escape_string($db, strip_tags($_POST['descr']))."', 
+					gif = '" .mysqli_real_escape_string($db, $_POST['gif']). "', 
 					yespost = '" .$_POST['yespost']. "', 
-					color = '" .$_POST['color']. "' 
+					color = '" .mysqli_real_escape_string($db, $_POST['color']). "' 
 					WHERE id = '" .$_SESSION['user']. "'";
 			
 				if(isset($_POST['do_change'])){

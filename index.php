@@ -22,7 +22,7 @@
 			$post = "INSERT INTO post(id_user, id_who, post, img) VALUES (
 				'" .$_SESSION['user']. "',
 				'" .$_SESSION['user']. "',
-				'" .strip_tags($_POST['post']). "', 
+				'" .mysqli_real_escape_string($db, strip_tags($_POST['post'])). "', 
 				'" .$_POST['img']. "')";
 
 			if(mysqli_query($db, $post)){
