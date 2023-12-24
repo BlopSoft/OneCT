@@ -52,7 +52,7 @@
 			<a href="allusers.php">Все пользователи</a>
 			<a href="feed.php">Стена</a>
 			<a href="login.php">Войти</a>
-			<a href="reg.php">Регестрироваться</a>
+			<a href="reg.php">Регистрироваться</a>
 		<?php endif; ?>
 	</div>
 	<div class="main_app">
@@ -153,7 +153,7 @@
 				</div>
 			<?php else : ?>
 				<h1>Добро пожаловать в <?php echo($sitename); ?>!</h1>
-				<p>Для того чтобы использовать <?php echo($sitename); ?> то надо войти или зарегестрировать аккаунт</p>
+				<p>Для использования платформы <?php echo($sitename); ?> необходимо пройти авторизацию</p>
 			<?php endif; ?>
 	</div>
 </body>
