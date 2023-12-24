@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div class="header">
-		<a href="reg.php">Регестрироваться</a>
+		<a href="reg.php">Регистрироваться</a>
 	</div>
 	<div class="main_app">
 		<div class="main">
