@@ -75,12 +75,12 @@
 					}	
 					
 					if(count(mysqli_fetch_assoc(mysqli_query($db, $checkip))) != 0){
-						$errors[] = 'Вы уже зарегестрированы!';
+						$errors[] = 'Вы уже зарегистрированы!';
 					}
 
 					if(empty($errors)){
 						if(mysqli_query($db, $createacc)){
-							echo('<p>Вы успешно зарегестрироавны!</p>');
+							echo('<p>Вы успешно зарегистрированы!</p>');
 						}
 					} else {
 						echo ('<p>'.array_shift($errors).'</p>');
