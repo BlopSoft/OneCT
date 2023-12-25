@@ -20,7 +20,7 @@
 		<?php else : ?>
 			<a href="allusers.php">Все пользователи</a>
 			<a href="login.php">Войти</a>
-			<a href="reg.php">Регестрироваться</a>
+			<a href="reg.php">Регистрироваться</a>
 		<?php endif; ?>
 	</div>
 	<div class="main_app">

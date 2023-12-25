@@ -76,13 +76,15 @@
 						$errors['error'] = 'Email почта занятя!';
 					}	
 					
+					if(count(mysqli_fetch_assoc(mysqli_query($db, $checkip))) != 0){
+						$errors[] = 'Вы уже зарегистрированы!';
 					if(mysqli_num_rows(mysqli_query($db, $checkip)) != 0){
-						$errors['error'] = 'Вы уже зарегестрированы!';
+						$errors['error'] = 'Вы уже зарегистрированы!';
 					}
 
 					if(empty(trim($errors['error']))){
 						if(mysqli_query($db, $createacc)){
-							echo('<p>Вы успешно зарегестрироавны!</p>');
+							echo('<p>Вы успешно зарегистрированы!</p>');
 						} else {
 							echo('<p>Произошла ошибка сервера</p>');
 						}
