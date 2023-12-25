@@ -72,9 +72,7 @@
 						if((mysqli_num_rows(mysqli_query($db, $checkemail))) != 0){
 							$errors['error'] = 'Email почта занятя!';
 						}	
-						
-						if(count(mysqli_fetch_assoc(mysqli_query($db, $checkip))) != 0){
-							$errors[] = 'Вы уже зарегистрированы!';
+
 						if(mysqli_num_rows(mysqli_query($db, $checkip)) != 0){
 							$errors['error'] = 'Вы уже зарегистрированы!';
 						}
@@ -89,7 +87,6 @@
 							echo('<p>' .$errors['error']. '</p>');
 						}
 					}
-				}
 				?>
 			</div>
 		</div>
