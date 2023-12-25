@@ -44,7 +44,7 @@
 				<p>
 					<button type="submit" name="do_change">Изменить</button>
 				</p>
-				<a href="/delete.php">Удаление аккаунта</a>
+				<a href="delete.php">Удаление аккаунта</a>
 			</form>
 			<?php 
 				$change = "UPDATE users SET 
