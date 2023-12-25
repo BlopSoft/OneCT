@@ -117,7 +117,7 @@
 										echo('close');
 									echo('</span>');
 								echo('</a>');
-								echo('<a href="method/pinpost.php?id=' .$list['id']. '">');
+								echo('<a href="../method/pinpost.php?id=' .$list['id']. '">');
 									echo('<span class="material-symbols-outlined">');
 										echo('push_pin');
 									echo('</span><br>');
