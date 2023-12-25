@@ -1,16 +1,12 @@
 <?php
-	require_once "include/config.php";
+	require_once "../include/config.php";
 ?>
 
 <!DOCTYPE html
 <html lang='ru'>
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-	<link rel="shortcut icon" href="<?php echo($favicon); ?>" type="image/x-icon">
+	<?php include '../include/html/head.php'; ?>
     <title>Стена</title>
-    <link rel="stylesheet" href="<?php echo($style); ?>">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 	<div class="header">

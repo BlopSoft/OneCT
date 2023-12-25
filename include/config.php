@@ -3,9 +3,9 @@
 
     session_start();
 
-    $sitename = "OneConnect Alpha";
+    $sitename = "OneConnect Pre Beta";
     $favicon = "favicon.png";
-    $style = "themes/main.css";
+    $style = "md3";
     $antispam = 30;
 
     // Выполнение конфига
@@ -19,7 +19,7 @@
 
     mysqli_set_charset($db,"utf8mb4");
 
-    if( $db == false ){
+    if($db == false){
         echo('Ошибка подключение базы данных');
         echo mysqli_connect_error();
     }

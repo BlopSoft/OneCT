@@ -1,5 +1,5 @@
 <?php
-	require_once "include/config.php";
+	require_once "../include/config.php";
 
 	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = "' .$_SESSION['user']. '"'));
 ?>
@@ -7,11 +7,8 @@
 <!DOCTYPE html
 <html lang="ru">
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-	<link rel="shortcut icon" href="<?php echo($favicon); ?>" type="image/x-icon">
+	<?php include '../include/html/head.php'; ?>
     <title>Изменение аккаунта</title>
-    <link rel="stylesheet" href="<?php echo($style); ?>">
 </head>
 <body>
 	<div class="header">

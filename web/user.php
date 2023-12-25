@@ -1,5 +1,5 @@
 <?php
-	require_once "include/config.php";
+	require_once "../include/config.php";
 
 	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = "' .(int)$_GET['id']. '"'));
 
@@ -44,12 +44,8 @@
 <!DOCTYPE html
 <html lang='ru'>
 <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
-	<link rel="shortcut icon" href="<?php echo($favicon); ?>" type="image/x-icon">
+	<?php include '../include/html/head.php'; ?>
     <title>Пользователь <?php echo($all['name']); ?></title>
-    <link rel="stylesheet" href="<?php echo($style); ?>">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
 	<div class="header">
@@ -122,8 +118,6 @@
 
 						if($list['pin'] == 1){
 							echo('  Закреплено');
-						} else {
-							echo('');
 						}
 
 						echo('<br>');
@@ -142,8 +136,6 @@
 
 							if(!empty(trim($list['img']))){
 								echo('<img width="100%" src="' .$list['img']. '">');
-							} else {
-								echo('');
 							}
 
 							echo('<p>' .strip_tags($list['post']). '</p>');

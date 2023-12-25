@@ -1,0 +1,19 @@
+{
+    "id":"onect_old",
+    "version":"0.0.0",
+    "enable":"1",
+    "metadata":
+    {
+        "author":"dibof228",
+        "Russian":
+        {
+            "name":"Старый OneConnect",
+            "descr":"Старая тема для OneConnect"
+        },
+        "English":
+        {
+            "name":"OneConnect Old",
+            "descr":"Old theme for OneConnect"
+        }
+    }
+}
