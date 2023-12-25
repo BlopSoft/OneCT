@@ -50,40 +50,46 @@
 					"' .mysqli_real_escape_string($db, $_POST['email']). '", 
 					"' .mysqli_real_escape_string($db, password_hash($_POST['pass'], PASSWORD_DEFAULT)). '", 
 					"' .mysqli_real_escape_string($db, $_SERVER['REMOTE_ADDR']). '", 
-					"' .mysqli_real_escape_string($db, $_POST['descr']). '")';
+					"' .mysqli_real_escape_string($db, $_POST['descr']). '"
+				)';
 						
 				if(isset($_POST['do_signup'])){
 					$errors = array();
-					if(trim($_POST['username']) == '' ){
-						$errors[] = 'Введите свой ник!';
+
+					if(empty(trim($_POST['username']))){
+						$errors['error'] = 'Введите свой ник!';
 					}
 					
-					if(trim($_POST['email']) == '' ){
-						$errors[] = 'Введите свою email почту!';
+					if(empty(trim($_POST['email']))){
+						$errors['error'] = 'Введите свою email почту!';
 					}
 					
-					if(trim($_POST['pass']) == '' ){
-						$errors[] = 'Введите свой пароль!';
+					if(empty(trim($_POST['pass']))){
+						$errors['error'] = 'Введите свой пароль!';
 					}	
 					
 					if($_POST['pass2'] != $_POST['pass'] ){
-						$errors[] = 'Повторный пароль введён неверно!';
+						$errors['error'] = 'Повторный пароль введён неверно!';
 					}
 					
-					if(count((mysqli_fetch_assoc(mysqli_query($db, $checkemail)))) != 0){
-						$errors[] = 'Email почта занятя!';
+					if((mysqli_num_rows(mysqli_query($db, $checkemail))) != 0){
+						$errors['error'] = 'Email почта занятя!';
 					}	
 					
 					if(count(mysqli_fetch_assoc(mysqli_query($db, $checkip))) != 0){
 						$errors[] = 'Вы уже зарегистрированы!';
+					if(mysqli_num_rows(mysqli_query($db, $checkip)) != 0){
+						$errors['error'] = 'Вы уже зарегистрированы!';
 					}
 
-					if(empty($errors)){
+					if(empty(trim($errors['error']))){
 						if(mysqli_query($db, $createacc)){
 							echo('<p>Вы успешно зарегистрированы!</p>');
+						} else {
+							echo('<p>Произошла ошибка сервера</p>');
 						}
 					} else {
-						echo ('<p>'.array_shift($errors).'</p>');
+						echo ('<p>' .$errors['error']. '</p>');
 					}
 				}	
 			?>
