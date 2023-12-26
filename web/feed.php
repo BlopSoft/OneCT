@@ -2,8 +2,7 @@
 	require_once "../include/config.php";
 ?>
 
-<!DOCTYPE html
-<html lang='ru'>
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Стена</title>
@@ -21,39 +20,47 @@
 	</div>
 	<div class="main_app">
 		<?php
-			$stena = mysqli_query($db, "SELECT * FROM post ORDER BY date DESC");	 		
+			$stena = mysqli_query($db, "SELECT * FROM post ORDER BY date DESC"); 		
 					
-			while($list = mysqli_fetch_assoc($stena)){
-				echo('<div class="post">');
+			while($list = mysqli_fetch_assoc($stena)):
+			?>
+			<div class="post">
+				<?php $user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'")); ?>
 
-				$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
-					
-					echo('<b>');
-						echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-							echo(strip_tags($user['name']));
-						echo('</a>');
-					echo('</b><br>');
-					echo('<span class="date">');
-						echo($list['date']);
-					echo('</span><br>');	
+				<b>
+					<a class="user" href="user.php?id=' .$user['id']. '">
+						<?php echo(strip_tags($user['name'])); ?>
+					</a>
+				</b>
 
-				$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
+				<?php 
+					if($list['pin'] == 1){
+						echo('  Закреплено');
+					} 
+				?>
 
-					echo('<b>От имени: ');
-						echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-							echo(strip_tags($user['name']));
-						echo('</a>');
-					echo('</b>');
-					
-						if(!empty(trim($list['img']))){
-							echo('<img width="100%" src="' .$list['img']. '">');
-						} else {
-							echo('');
-						}
+				<span class="date">
+					<?php echo($list['date']); ?>
+				</span><br>	
 
-						echo('<p>' .strip_tags($list['post']). '</p>');
-				echo('</div>');
-			};
+				<?php $user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'")); ?>
+
+				<b>От имени: 
+					<a class="user" href="user.php?id=' .$user['id']. '">
+						<?php echo(strip_tags($user['name'])); ?>
+					</a>
+				</b>
+
+				<?php 
+					if(!empty(trim($list['img']))){
+						echo('<img width="100%" src="' .$list['img']. '">');
+					} 
+				?>
+
+				<p><?php echo(strip_tags($list['post'])); ?></p>
+			</div>
+		<?php
+			endwhile;
 		?>
 	</div>
 </body>

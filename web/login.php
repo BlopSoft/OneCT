@@ -1,25 +1,31 @@
 <?php
 	require_once "../include/config.php";
 
-	if(isset($_POST['do_login'])){
-		$errors = array();
-		$user = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users where email ="' .mysqli_real_escape_string($db, $_POST['email']). '"'));
+	if(isset($_SESSION['user'])){
+		header("Location: index.php");
+	}
 
-		if(count($user) != 0){
-			if(password_verify(mysqli_real_escape_string($db, $_POST['pass']), $user['pass'])){
-				$_SESSION['user'] = $user['id'];
-				header("Location: index.php");
-			} else {
-				$errors[] = 'Пароль не верный!';
-			}
-		} else {
-			$errors[] = 'Пользователь не найден!';
+	if(isset($_POST['do_login'])){
+		$text = array('text' => "");
+
+		$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM users where email ='" .mysqli_real_escape_string($db, $_POST['email']). "'"));
+
+		if(!password_verify($_POST['pass'], $user['pass'])){
+			$text['text'] = "Пароль не верный!";
+		}
+
+		if(empty($user)){
+			$text['text'] = "Пользователь не найден!";
+		}
+
+		if(empty(trim($text['text']))){
+			$_SESSION['user'] = $user['id'];
+			header("Location: index.php");
 		}
 	}
 ?>
 
-<!DOCTYPE html
-<html lang='ru'>
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Вход</title>
@@ -43,13 +49,7 @@
 					<button type="submit" name="do_login">Войти</button>
 				</p>
 			</form>
-		</div>
-		<div>
-			<?php 
-				if(!empty($errors))  {
-					echo ('<p>'.array_shift($errors).'</p>');
-				}
-			?>
+			<p><?php echo($text['text']); ?></p>
 		</div>
 	</div>
 </body>

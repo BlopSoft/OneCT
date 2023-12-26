@@ -1,11 +1,11 @@
 <?php
 	require_once "../include/config.php";
 
+	sleep(1);
 	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = "' .$_SESSION['user']. '"'));
 ?>
 
-<!DOCTYPE html
-<html lang="ru">
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Изменение аккаунта</title>
@@ -27,14 +27,6 @@
 					<textarea name="descr"><?php echo $all['descr']; ?></textarea>
 				</p>
 				<p>
-					<p>Цвет имени:</p>
-					<input name="color" value="<?php echo $all['color']; ?>">
-				</p>
-				<p>
-					<p>gif-статус:</p>
-					<textarea name="gif"><?php echo $all['gif']; ?></textarea>
-				</p>
-				<p>
 					<p>Разрешить публиковать посты другим:</p>
 					<p>Можно:
 					<input type="radio" name="yespost" value="1">
@@ -44,15 +36,13 @@
 				<p>
 					<button type="submit" name="do_change">Изменить</button>
 				</p>
-				<a href="delete.php">Удаление аккаунта</a>
+				<a href="/delete.php">Удаление аккаунта</a>
 			</form>
 			<?php 
 				$change = "UPDATE users SET 
 					name = '" .mysqli_real_escape_string($db, strip_tags($_POST['username'])). "', 
 					descr = '" .mysqli_real_escape_string($db, strip_tags($_POST['descr']))."', 
-					gif = '" .mysqli_real_escape_string($db, $_POST['gif']). "', 
-					yespost = '" .$_POST['yespost']. "', 
-					color = '" .mysqli_real_escape_string($db, $_POST['color']). "' 
+					yespost = '" .$_POST['yespost']. "'
 					WHERE id = '" .$_SESSION['user']. "'";
 			
 				if(isset($_POST['do_change'])){

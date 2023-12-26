@@ -2,8 +2,7 @@
 	require_once "../include/config.php";
 ?>
 
-<!DOCTYPE html
-<html lang='ru'>
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Все пользователи</title>
@@ -22,16 +21,12 @@
 	<div class="main_app">
 		<div class="main">
 			<?php 
-				// $countUsers = mysqli_query($db, 'SELECT FROM users'); 
-
-				// echo '<p>На сайте всего: ' .mysqli_num_rows($countUsers). ' пользователей</p>'; 
-
 				$allUsers = mysqli_query($db, 'SELECT id, name, priv, gif, color FROM users');
 				
 				while($list = mysqli_fetch_assoc($allUsers)){
 					echo('<div class="user">');
 						echo('<a href="user.php?id=' .$list['id']. '">');
-							echo('<h1 style="color: '. $list['color']. '">');
+							echo('<h1>');
 								echo(strip_tags($list['name']));
 
 								if ($list['priv'] == 1){ 

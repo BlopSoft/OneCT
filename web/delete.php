@@ -16,8 +16,7 @@
 
 ?>
 
-<!DOCTYPE html
-<html lang="ru">
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Удаление аккаунта</title>

@@ -1,9 +1,58 @@
 <?php
 	require_once "../include/config.php";
+
+	if(isset($_SESSION['user'])){
+		header("Location: index.php");
+	}
+
+	$checkemail = 'SELECT email FROM users WHERE email = "' .$_POST['email']. '"';
+	$checkip = 'SELECT ip FROM users WHERE ip = "' .$_SERVER['REMOTE_ADDR']. '"';
+	$createacc = 'INSERT INTO users(name, email, pass, ip, descr) VALUES (
+		"' .mysqli_real_escape_string($db, $_POST['username']). '", 
+		"' .mysqli_real_escape_string($db, $_POST['email']). '", 
+		"' .mysqli_real_escape_string($db, password_hash($_POST['pass'], PASSWORD_DEFAULT)). '", 
+		"' .mysqli_real_escape_string($db, $_SERVER['REMOTE_ADDR']). '", 
+		"' .mysqli_real_escape_string($db, $_POST['descr']). '"
+	)';
+							
+	if(isset($_POST['do_signup'])){
+		$text = array('text' => "");
+
+		if(empty(trim($_POST['username']))){
+			$text['text'] = 'Введите свой ник!';
+		}
+						
+		if(empty(trim($_POST['email']))){
+			$text['text'] = 'Введите свою email почту!';
+		}
+						
+		if(empty(trim($_POST['pass']))){
+			$text['text'] = 'Введите свой пароль!';
+		}	
+						
+		if($_POST['pass2'] != $_POST['pass'] ){
+			$text['text'] = 'Повторный пароль введён неверно!';
+		}
+						
+		if((mysqli_num_rows(mysqli_query($db, $checkemail))) != 0){
+			$text['text'] = 'Email почта занятя!';
+		}	
+
+		if(mysqli_num_rows(mysqli_query($db, $checkip)) != 0){
+			$text['text'] = 'Вы уже зарегистрированы!';
+		}
+
+		if(empty(trim($text['text']))){
+			if(mysqli_query($db, $createacc)){
+				$text['text'] = 'Вы успешно зарегистрированы';;
+			} else {
+				$text['text'] = 'Ошибка сервера';
+			}
+		}
+	}
 ?>
 
-<!DOCTYPE html>
-<html lang='ru'>
+<html>
 	<head>
 		<?php include '../include/html/head.php'; ?>
 		<title>Регистрация</title>
@@ -39,55 +88,7 @@
 						<button type="submit" name="do_signup">Зарегестрироваться</button>
 					</p>
 				</form>
-				<?php 
-					$checkemail = 'SELECT email FROM users WHERE email = "' .$_POST['email']. '"';
-					$checkip = 'SELECT ip FROM users WHERE ip = "' .$_SERVER['REMOTE_ADDR']. '"';
-					$createacc = 'INSERT INTO users(name, email, pass, ip, descr) VALUES (
-						"' .mysqli_real_escape_string($db, $_POST['username']). '", 
-						"' .mysqli_real_escape_string($db, $_POST['email']). '", 
-						"' .mysqli_real_escape_string($db, password_hash($_POST['pass'], PASSWORD_DEFAULT)). '", 
-						"' .mysqli_real_escape_string($db, $_SERVER['REMOTE_ADDR']). '", 
-						"' .mysqli_real_escape_string($db, $_POST['descr']). '"
-					)';
-							
-					if(isset($_POST['do_signup'])){
-						$errors = array();
-
-						if(empty(trim($_POST['username']))){
-							$errors['error'] = 'Введите свой ник!';
-						}
-						
-						if(empty(trim($_POST['email']))){
-							$errors['error'] = 'Введите свою email почту!';
-						}
-						
-						if(empty(trim($_POST['pass']))){
-							$errors['error'] = 'Введите свой пароль!';
-						}	
-						
-						if($_POST['pass2'] != $_POST['pass'] ){
-							$errors['error'] = 'Повторный пароль введён неверно!';
-						}
-						
-						if((mysqli_num_rows(mysqli_query($db, $checkemail))) != 0){
-							$errors['error'] = 'Email почта занятя!';
-						}	
-
-						if(mysqli_num_rows(mysqli_query($db, $checkip)) != 0){
-							$errors['error'] = 'Вы уже зарегистрированы!';
-						}
-
-						if(empty(trim($errors['error']))){
-							if(mysqli_query($db, $createacc)){
-								echo('<p>Вы успешно зарегистрированы!</p>');
-							} else {
-								echo('<p>Произошла ошибка сервера</p>');
-							}
-						} else {
-							echo('<p>' .$errors['error']. '</p>');
-						}
-					}
-				?>
+				<p><?php echo($text['text']); ?></p>
 			</div>
 		</div>
 	</body>

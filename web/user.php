@@ -8,12 +8,15 @@
 	}
 
 	if(isset($_POST['do_post'])){
-		$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY id DESC"));
-		$date = round((time() - strtotime($stenka['date'])));
-		$errors = array();
+		$errors = array('error' => "");
+		
+		if($enable_antispam == true){
+			$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY id DESC"));
+			$date = round((time() - strtotime($stenka['date'])));
 
-		if(!$all['yespost'] == 1){
-			$errors[] = 'OneConnect error: "Хочешь бана мамкин хакер?"';
+			if(!$all['yespost'] == 1){
+				$errors[] = 'OneConnect error: "Хочешь бана мамкин хакер?"';
+			}
 		}
 
 		if(!isset($_SESSION['user'])){
@@ -35,14 +38,14 @@
 				'" .mysqli_real_escape_string($db, strip_tags($_POST['post'])). "')";
 
 			if(mysqli_query($db, $post)){
+				sleep(1);
 				header("Location: ");
 			}
 		}
 	}
 ?>
 
-<!DOCTYPE html
-<html lang='ru'>
+<html>
 <head>
 	<?php include '../include/html/head.php'; ?>
     <title>Пользователь <?php echo($all['name']); ?></title>
@@ -62,22 +65,12 @@
 	</div>
 	<div class="main_app">
 		<div class="main">
-			<h1 style="color: <?php echo($all['color']); ?>;">
-				<?php echo(strip_tags($all['name'])); ?>
+			<h1>
 				<?php 
+					echo(strip_tags($all['name'])); 
 
-				
-					if(!empty(trim($all['gif']))){
-						echo('<img height="32px" src="' .$all['gif']. '">');
-					} else {
-						echo('');
-					} 
-				?>
-				<?php 
 					if ($all['priv'] == 1){ 
 						echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
-					} else {
-						echo('');
 					}
 				?>
 			</h1>
@@ -103,44 +96,47 @@
 				<?php endif; ?>
 			</form>
 			<?php
-				$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .(int)$_GET['id']. "' ORDER BY pin DESC, date DESC");	 		
-				
-				while($list = mysqli_fetch_assoc($stena)){
-					echo('<div class="post">');
-
-					$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'"));
+				$stena = mysqli_query($db, "SELECT * FROM post WHERE id_user = '" .(int)$_GET['id']. "' ORDER BY pin DESC, date DESC"); 		
 						
-						echo('<b>');
-							echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-								echo(strip_tags($user['name']));
-							echo('</a>');
-						echo('</b>');
+				while($list = mysqli_fetch_assoc($stena)):
+				?>
+				<div class="post">
+					<?php $user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_user']. "'")); ?>
 
+					<b>
+						<a class="user" href="user.php?id=' .$user['id']. '">
+							<?php echo(strip_tags($user['name'])); ?>
+						</a>
+					</b>
+
+					<?php 
 						if($list['pin'] == 1){
 							echo('  Закреплено');
-						}
+						} 
+					?>
 
-						echo('<br>');
+					<span class="date">
+						<?php echo($list['date']); ?>
+					</span><br>	
 
-						echo('<span class="date">');
-							echo($list['date']);
-						echo('</span><br>');	
+					<?php $user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'")); ?>
 
-					$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT name, id FROM users WHERE id = '" .$list['id_who']. "'"));
+					<b>От имени: 
+						<a class="user" href="user.php?id=' .$user['id']. '">
+							<?php echo(strip_tags($user['name'])); ?>
+						</a>
+					</b>
 
-						echo('<b>От имени: ');
-							echo('<a class="user" href="user.php?id=' .$user['id']. '">');
-								echo(strip_tags($user['name']));
-							echo('</a>');
-						echo('</b>');
+					<?php 
+						if(!empty(trim($list['img']))){
+							echo('<img width="100%" src="' .$list['img']. '">');
+						} 
+					?>
 
-							if(!empty(trim($list['img']))){
-								echo('<img width="100%" src="' .$list['img']. '">');
-							}
-
-							echo('<p>' .strip_tags($list['post']). '</p>');
-					echo('</div>');
-				};
+					<p><?php echo(strip_tags($list['post'])); ?></p>
+				</div>
+			<?php
+				endwhile;
 			?>
 		</div>
 	</div>
