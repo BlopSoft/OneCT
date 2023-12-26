@@ -10,13 +10,11 @@
 	if(isset($_POST['do_post'])){
 		$errors = array('error' => "");
 		
-		if($enable_antispam == true){
-			$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY id DESC"));
-			$date = round((time() - strtotime($stenka['date'])));
+		$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY id DESC"));
+		$date = round((time() - strtotime($stenka['date'])));
 
-			if($date < $antispam){
-				$errors[] = "Не выкладывай слишком часто посты!";
-			}
+		if($date < $antispam){
+			$errors[] = "Не выкладывай слишком часто посты!";
 		}
 
 		if(!$all['yespost'] == 1){

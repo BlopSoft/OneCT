@@ -8,13 +8,11 @@
 	if(isset($_POST['do_post'])){
 		$errors = array('error' => "");
 
-		if($enable_antispam == true){
-			$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY pin DESC, date DESC"));
-			$date = round((time() - strtotime($stenka['date'])));
+		$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY pin DESC, date DESC"));
+		$date = round((time() - strtotime($stenka['date'])));
 
-			if($date < $antispam){
-				$errors['error'] = "Не выкладывай слишком часто посты!";
-			}
+		if($date < $antispam){
+			$errors['error'] = "Не выкладывай слишком часто посты!";
 		}
 
 		if(empty(trim(strip_tags($_POST['post']))) and empty(trim($_POST['img']))){
