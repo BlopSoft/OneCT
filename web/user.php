@@ -14,9 +14,13 @@
 			$stenka = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM post WHERE id_who = '" .$_SESSION['user']. "' ORDER BY id DESC"));
 			$date = round((time() - strtotime($stenka['date'])));
 
-			if(!$all['yespost'] == 1){
-				$errors[] = 'OneConnect error: "Хочешь бана мамкин хакер?"';
+			if($date < $antispam){
+				$errors[] = "Не выкладывай слишком часто посты!";
 			}
+		}
+
+		if(!$all['yespost'] == 1){
+			$errors[] = 'OneConnect error: "Хочешь бана мамкин хакер?"';
 		}
 
 		if(!isset($_SESSION['user'])){
@@ -26,16 +30,12 @@
 		if(empty(trim(strip_tags($_POST['post'])))){
 			$errors[] = "В посте нету текста!"; 
 		}
-
-		if($date < $antispam){
-			$errors[] = "Не выкладывай слишком часто посты!";
-	   	}
-
 		if(empty($errors)){
 			$post = "INSERT INTO post(id_user, id_who, post) VALUES (
 				'" .$_GET['id']. "',
 				'" .$_SESSION['user']. "',
-				'" .mysqli_real_escape_string($db, strip_tags($_POST['post'])). "')";
+				'" .mysqli_real_escape_string($db, strip_tags($_POST['post'])). "
+			')";
 
 			if(mysqli_query($db, $post)){
 				sleep(1);
