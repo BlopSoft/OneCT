@@ -6,7 +6,8 @@
     $sitename = "OneConnect Pre Beta";
     $favicon = "favicon.png";
     $style = "md3";
-    $antispam = 30;
+    $enable_antispam = true;
+    $antispam = 60;
 
     // Выполнение конфига
 
