@@ -83,7 +83,6 @@
 								close
 							</span>
 						</a>
-						<span class="material-symbols-outlined"> </span>
 						<a href="../method/pinpost.php?id=<?php echo($list['id']); ?>">
 							<span class="material-symbols-outlined">
 								push_pin
