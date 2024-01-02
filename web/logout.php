@@ -3,6 +3,6 @@
 
 	unset($_SESSION['user']);
 
-	header('Location: index.php');
+	header("Location: $url");
 ?>
 

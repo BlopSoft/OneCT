@@ -3,8 +3,8 @@
         global $db;
 
         $verify = array();
-        $detoken = json_decode(base64_decode($_GET['access_token']), true);
-        $user = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users where id = "' .mysqli_real_escape_string($db, $detoken['id']). '"'));
+        $detoken = json_decode(base64_decode($token), true);
+        $user = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users where id = "' .(int)$detoken['id']. '"'));
 
         if(trim(empty($token))){
             $verify['error'] = 1;

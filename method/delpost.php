@@ -2,10 +2,12 @@
 	require_once "../include/config.php";
 
 	$delete = 'DELETE FROM post WHERE id = "' .(int)$_GET['id']. '"';
-    $postinf = mysqli_query($db, 'SELECT * FROM post WHERE id = "' .(int)$_GET['id']. '" AND id_user = "' .$_SESSION['user']. '"');
+    $postinf = mysqli_query($db, 'SELECT * FROM post WHERE id = "' .(int)$_GET['id']. '" AND id_user = "' .$_SESSION['user']['user_id']. '"');
+	$postdata = mysqli_fetch_assoc($postinf);
 
 	if(mysqli_num_rows($postinf) == 1){
 		if(mysqli_query($db, $delete)){
+			unlink($postdata['img']);
 			header("Location: " .$_SERVER['HTTP_REFERER']);
 		} else {
 			header("Location: " .$_SERVER['HTTP_REFERER']);

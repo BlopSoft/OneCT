@@ -1,6 +1,6 @@
 :root {
 	/* Тут цвет в hsl, нужно только 2 первых значений тут */
-	--color: 0, 70%;
+	--color: 290, 66%;
 }
 
 *{
@@ -13,20 +13,42 @@ body {
 	font-size: 16px;
 }
 
-.header a {
-	color: hsl(var(--color), 10%);
-	text-decoration: none;
-    margin-left: 12px;
-}
-
 .header {
 	text-align: right;
    	background: hsl(var(--color), 90%);
 	color: hsl(var(--color), 10%);
 	text-decoration: none;
 	padding: 16px;
+	padding-bottom: 48px;
    	font-size: 24px;
 	border-radius: 0px 0px 16px 16px;
+	left: 0;
+	position: sticky;
+    right: 0;
+	top: 0;
+    z-index: 1;
+	box-shadow: 0px 5px 8px hsla(var(--color), 10%, 0.1);
+}
+
+@media screen and (max-width: 522px){
+	.header {
+		padding-bottom: 80px;
+	}
+}
+
+.header a {
+	color: hsl(var(--color), 10%);
+	text-decoration: none;
+    margin-left: 12px;
+}
+
+.header .sitename {
+	float: left;
+}
+
+.header .href {
+	margin-left: 12px;
+	float: right;
 }
 
 .main_app {
@@ -42,8 +64,22 @@ body {
 	margin: 8px;
 }
 
+.main .img50 {
+	border-radius: 25px;
+}
+
+.main .img100 {
+	border-radius: 50px;
+}
+
+.main .info {
+	color: hsl(var(--color), 20%);
+	padding: 8px;
+	padding-top: 32px;
+}
+
 .main a {
-	color: hsl(var(--color), 10%);
+	color: hsl(var(--color), 20%);
 	text-decoration: none;
 }
 
@@ -61,6 +97,7 @@ body {
 	background: hsl(var(--color), 80%);
 	padding: 16px;
 	margin: 8px;
+	margin-bottom: 0px;
 	text-align: center;
 	color: hsl(var(--color), 20%);
 	border-radius: 16px;
@@ -89,30 +126,23 @@ body {
 	padding: 16px;
 	border-radius: 16px 16px 0px 0px;
 	width: 100%;
-	height: 200px;
+	min-height: 200px;
 }
 
 .posting .do_post {
 	display: block;
+	font-size: 16px;
 	background: hsl(var(--color), 80%);
 	width: 100%;
-	height: 32px;
-	padding-left: 16px;
-	padding-right: 16px;
+	padding: 16px;
 	border: none;
 	border-radius: 0px 0px 16px 16px;
 	margin-bottom: 16px;
 }
 
-.posting .imginput {
-	display: block;
-	background: hsl(var(--color), 90%);
+.posting .detail input{
 	width: 100%;
-	height: 32px;
-	padding-left: 16px;
-	padding-right: 16px;
-	border: none;
-	border-radius: 16px;
+	padding-top: 16px;
 }
 
 .post {
@@ -123,18 +153,18 @@ body {
 	border-radius: 16px;
 	color: hsl(var(--color), 0%);
 	text-decoration: none;
-	box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 8px hsla(var(--color), 10%, 0.2);
 }
 
 .post .user {
-	color: hsl(var(--color), 0%);
+	color: hsl(var(--color), 10%);
 	text-decoration: none;
 }
 
 .post a .material-symbols-outlined {
 	float: right;
 	margin-left: 8px;
-	color: hsl(var(--color), 0%);
+	color: hsl(var(--color), 10%);
 	text-decoration: none;
 }
 
@@ -145,4 +175,37 @@ body {
 .user a {
 	color: hsl(var(--color), 10%);
 	text-decoration: none;
+}
+
+
+.post img {
+	border-radius: 16px;
+	margin-top: 8px;
+	width: 100%;
+}
+
+.back {
+	width: 30%;
+	display: block;
+	float: left;
+	background: hsl(var(--color), 90%);
+	margin: 16px;
+	padding: 16px;
+	border-radius: 16px;
+	color: hsl(var(--color), 0%);
+	text-decoration: none;
+	box-shadow: 0px 0px 8px hsla(var(--color), 10%, 0.2);
+}
+
+.next {
+	width: 30%;
+	float: right;
+	display: block;
+	background: hsl(var(--color), 90%);
+	margin: 16px;
+	padding: 16px;
+	border-radius: 16px;
+	color: hsl(var(--color), 0%);
+	text-decoration: none;
+	box-shadow: 0px 0px 8px hsla(var(--color), 10%, 0.2);
 }

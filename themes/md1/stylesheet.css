@@ -1,0 +1,191 @@
+*{
+	font-family: sans-serif;
+}
+
+body {
+	background: #E0E0E0;
+	margin: 0;
+}
+
+
+.header {
+	display: block;
+   	background: #4A148C;
+	color: white;
+	text-decoration: none;
+	padding: 16px;
+	padding-bottom: 48px;
+   	font-size: 24px;
+	box-shadow: 0px 5px 8px rgba(0,0,0,0.5);
+	left: 0;
+	position: sticky;
+    right: 0;
+	top: 0;
+    z-index: 1;
+}
+
+@media screen and (max-width: 510px){
+	.header {
+		padding-bottom: 80px;
+	}
+}
+
+.header a {
+	color: white;
+	text-decoration: none;
+}
+
+.header .sitename {
+	float: left;
+}
+
+.header .href {
+	margin-left: 12px;
+	float: right;
+}
+
+.main_app {
+	margin: 0 auto;
+	max-width: 580px;
+}
+
+.main {
+	background: #FAFAFA;
+    padding: 16px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	border-radius: 0px 0px 4px 4px;
+}
+
+.main .info {
+	padding: 8px;
+}
+
+.changeuser {
+	text-align: right;
+}
+
+.changeuser a {
+	color: black;
+	text-decoration: none;
+}
+
+.head {
+	display: block;
+	background: #6A1B9A;
+	padding: 16px;
+	margin: 0px;
+	margin-top: 8px;
+	border-radius: 4px 4px 0px 0px;
+	text-align: center;
+	color: white;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+}
+
+/* Для постов */
+
+.wall {
+	text-align: left;
+}
+
+.posting {
+	display: block;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+}
+
+.posting .postarea {
+	display: block;
+	border: none;
+	resize: none;
+	padding: 16px;
+	width: 100%;
+	min-height: 200px;
+}
+
+.posting .do_post {
+	display: block;
+	background: #EEEEEE;
+	font-size: 16px;
+	width: 100%;
+	padding: 16px;
+	border: none;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+}
+
+.posting .detail{
+	padding: 16px;
+}
+
+.posting .detail input{
+	width: 100%;
+	padding-top: 16px;
+}
+
+.posting p {
+	padding-left: 16px;
+	padding-right: 16px;
+	padding-bottom: 16px;	
+}
+
+.post {
+	display: block;
+	background: #FAFAFA;
+	margin: 8px;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+	color: black;
+	text-decoration: none;
+}
+
+.post .user {
+	color: black;
+	text-decoration: none;
+}
+
+.post a .material-symbols-outlined {
+	float: right;
+	color: black;
+	text-decoration: none;
+}
+
+.post .date {
+	color: darkgray;
+}
+
+.user a {
+	color: black;
+	text-decoration: none;
+}
+
+.post img {
+	margin-top: 8px;
+	width: 100%;
+}
+
+.back {
+	width: 30%;
+	display: block;
+	float: left;
+	background: #FAFAFA;
+	margin: 8px;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+	color: black;
+	text-decoration: none;
+}
+
+.next {
+	width: 30%;
+	display: block;
+	float: right;
+	background: #FAFAFA;
+	margin: 8px;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+	color: black;
+	text-decoration: none;
+}

@@ -3,9 +3,10 @@
 
     session_start();
 
-    $sitename = "OneConnect Pre Beta";
+    $url = "http://" .$_SERVER['HTTP_HOST'];
+    $sitename = "OneConnect";
     $favicon = "favicon.png";
-    $style = "md3";
+    $style = "md1";
     $enable_antispam = true;
     $antispam = 60;
 

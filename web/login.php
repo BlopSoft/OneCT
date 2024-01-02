@@ -2,25 +2,18 @@
 	require_once "../include/config.php";
 
 	if(isset($_SESSION['user'])){
-		header("Location: index.php");
+		header("Location: $url/web");
 	}
 
 	if(isset($_POST['do_login'])){
-		$text = array('text' => "");
+		$data = json_decode(file_get_contents($url. '/api/token.php?username=' .$_POST['username']. '&password=' .$_POST['password']. '&grant_type=password'), true);
 
-		$user = mysqli_fetch_assoc(mysqli_query($db, "SELECT * FROM users where email ='" .mysqli_real_escape_string($db, $_POST['email']). "'"));
+		if(empty($data['error_code'])){
+			$_SESSION['user'] = $data;
 
-		if(!password_verify($_POST['pass'], $user['pass'])){
-			$text['text'] = "Пароль не верный!";
-		}
-
-		if(empty($user)){
-			$text['text'] = "Пользователь не найден!";
-		}
-
-		if(empty(trim($text['text']))){
-			$_SESSION['user'] = $user['id'];
-			header("Location: index.php");
+			header("Location: $url");
+		} else {
+			$error = $data['error_msg'];
 		}
 	}
 ?>
@@ -31,25 +24,23 @@
     <title>Вход</title>
 </head>
 <body>
-	<div class="header">
-		<a href="reg.php">Регистрироваться</a>
-	</div>
+	<?php include '../include/html/header.php'; ?>
 	<div class="main_app">
 		<div class="main">
 			<form action="login.php" method="POST">
 				<p>
 					<p>Логин:</p>
-					<input type="email" name="email">
+					<input type="email" name="username">
 				</p>
 				<p>
 					<p>Пароль:</p>
-					<input type="password" name="pass">
+					<input type="password" name="password">
 				</p>
 				<p>
 					<button type="submit" name="do_login">Войти</button>
 				</p>
 			</form>
-			<p><?php echo($text['text']); ?></p>
+			<p><?php echo($error); ?></p>
 		</div>
 	</div>
 </body>

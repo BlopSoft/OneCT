@@ -1,5 +1,4 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -9,30 +8,30 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
-DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `id` int(16) NOT NULL,
   `id_user` int(16) NOT NULL,
   `id_who` int(16) NOT NULL,
-  `post` varchar(512) CHARACTER SET utf8mb4 NOT NULL,
+  `post` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `img` varchar(256) DEFAULT NULL,
-  `pin` int(1) NOT NULL DEFAULT '0',
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `pin` int(1) NOT NULL DEFAULT 0,
+  `date` int(64) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(16) NOT NULL,
-  `email` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pass` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ip` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descr` varchar(256) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `color` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gif` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ban` int(1) NOT NULL DEFAULT '0',
-  `yespost` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `priv` int(1) NOT NULL DEFAULT '0'
+  `email` varchar(128) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `pass` text NOT NULL,
+  `ip` varchar(16) NOT NULL,
+  `descr` varchar(256) DEFAULT NULL,
+  `ban` int(1) NOT NULL DEFAULT 0,
+  `yespost` varchar(3) NOT NULL DEFAULT '0',
+  `priv` int(1) NOT NULL DEFAULT 0,
+  `img50` varchar(255) DEFAULT NULL,
+  `img100` varchar(255) DEFAULT NULL,
+  `img200` varchar(255) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
