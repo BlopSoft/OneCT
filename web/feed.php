@@ -43,7 +43,7 @@
 							</a>
 						</b>
 
-						<?php if($all['priv'] == 2): ?>
+						<?php if($all['priv'] >= 2): ?>
 							<a href="../method/delpost.php?id=<?php echo($list['id']); ?>">
 								<span class="material-symbols-outlined">
 									close

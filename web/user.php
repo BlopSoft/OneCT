@@ -78,7 +78,7 @@
 						}
 					?>
 
-					<?php if($list['id_user'] == $_SESSION['user']['user_id'] or $list['id_who'] == $_SESSION['user']['user_id'] or $all['priv'] == 2): ?>
+					<?php if($list['id_user'] == $_SESSION['user']['user_id'] or $list['id_who'] == $_SESSION['user']['user_id'] or $all['priv'] >= 2): ?>
 						<a href="../method/delpost.php?id=<?php echo($list['id']); ?>">
 							<span class="material-symbols-outlined">
 								close
