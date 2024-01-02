@@ -1,6 +1,8 @@
 <?php
 	require_once "../include/config.php";
 
+	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .(int)$_SESSION['user']['user_id']));
+
 	if(empty($_SESSION['user'])){
 		header("Location: login.php");
 	}
@@ -39,7 +41,15 @@
 							<a class="user" href="user.php?id=<?php echo($list['id_user']); ?>">
 								<?php echo($user['name']); ?>
 							</a>
-						</b><br>
+						</b>
+
+						<?php if($all['priv'] == 2): ?>
+							<a href="../method/delpost.php?id=<?php echo($list['id']); ?>">
+								<span class="material-symbols-outlined">
+									close
+								</span>
+							</a>
+						<?php endif; ?><br>
 
 						<span class="date">
 							<?php echo(date('d M Y в H:i', $list['date'])); ?>

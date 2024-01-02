@@ -1,6 +1,7 @@
 <?php
 	require_once "../include/config.php";
 
+	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .(int)$_SESSION['user']['user_id']));
 	$data = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .(int)$_GET['id']));
 ?>
 
@@ -24,7 +25,7 @@
 				<tr>
 					<?php if($data['img100'] != NULL): ?>
 						<td>
-							<img class="img100" src="<?php echo($data['img100']); ?>">
+							<img class="img100" src="<?php echo($_data['img100']); ?>">
 						</td>
 					<?php endif; ?>
 					<td class="info">
@@ -77,7 +78,7 @@
 						}
 					?>
 
-					<?php if($list['id_user'] == $_SESSION['user']['user_id'] or $list['id_who'] == $_SESSION['user']['user_id']): ?>
+					<?php if($list['id_user'] == $_SESSION['user']['user_id'] or $list['id_who'] == $_SESSION['user']['user_id'] or $all['priv'] == 2): ?>
 						<a href="../method/delpost.php?id=<?php echo($list['id']); ?>">
 							<span class="material-symbols-outlined">
 								close
