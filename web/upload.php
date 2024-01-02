@@ -84,9 +84,7 @@
     <?php include '../include/html/head.php'; ?>
 </head>
 <body>
-    <div class="header">
-        <a class="sitename" href="user.php?id=<?php echo($_SESSION['user']['user_id']); ?>"><?php echo($data['name']); ?></a>
-    </div>
+<?php include '../include/html/header.php'; ?>
     <div class="main_app">
         <div class="main">
             <form action="upload.php" method="post" enctype="multipart/form-data">
