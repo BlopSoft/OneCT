@@ -18,26 +18,27 @@
 			<?php $allUsers = mysqli_query($db, 'SELECT id, name, priv, img100 FROM users'); ?>
 				
 			<?php while($list = mysqli_fetch_assoc($allUsers)): ?>
-					<div class="user">
-						<table>
-							<tr>
-								<td><img class="img100" src="<?php echo($list['img100']); ?>"></td>
-								<td class="info">
-									<a href="user.php?id=<?php echo($list['id']); ?>">
-										<h1>
-											<?php
-												echo(strip_tags($list['name']));
+				<table>
+					<tr>
+						<?php if($list['img100'] != NULL): ?>
+							<td><img class="img100" src="<?php echo($list['img100']); ?>"></td>
+						<?php endif; ?>
+						<td class="info">
+							<a href="user.php?id=<?php echo($list['id']); ?>">
+								<h1>
+									<?php
+										echo(strip_tags($list['name']));
 
-												if ($list['priv'] == 1){ 
-													echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
-												}
-											?>
-										</h1>
-									</a>
-								</td>
-							</tr>
-						</table>
-					</div>
+										if ($list['priv'] == 1){ 
+											echo('<span> </span>');
+											echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
+										}
+									?>
+								</h1>
+							</a>
+						</td>
+					</tr>
+				</table>
 			<?php endwhile; ?>
 		</div>
 	</div>

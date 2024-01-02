@@ -22,15 +22,18 @@
 			<?php endif ?>
 			<table>
 				<tr>
-					<td>
-						<img class="img100" src="<?php echo($data['img100']); ?>">
-					</td>
+					<?php if($data['img100'] != NULL): ?>
+						<td>
+							<img class="img100" src="<?php echo($data['img100']); ?>">
+						</td>
+					<?php endif; ?>
 					<td class="info">
 						<h1>
 							<?php 
 								echo($data['name']); 
 
 								if($data['priv'] >= 1){
+									echo('<span> </span>');
 									echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>');
 								}
 							?>
@@ -80,7 +83,7 @@
 								close
 							</span>
 						</a>
-
+						<span class="material-symbols-outlined"> </span>
 						<a href="../method/pinpost.php?id=<?php echo($list['id']); ?>">
 							<span class="material-symbols-outlined">
 								push_pin
