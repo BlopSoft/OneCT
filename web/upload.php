@@ -84,7 +84,7 @@
     <?php include '../include/html/head.php'; ?>
 </head>
 <body>
-<?php include '../include/html/header.php'; ?>
+    <?php include '../include/html/header.php'; ?>
     <div class="main_app">
         <div class="main">
             <form action="upload.php" method="post" enctype="multipart/form-data">
