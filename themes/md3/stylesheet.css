@@ -154,7 +154,7 @@ body {
 	padding: 16px;
 	border-radius: 16px;
 	width: 100%;
-	min-height: 200px;
+	height: 200px;
 	margin-bottom: 16px;
 }
 
@@ -205,7 +205,7 @@ body {
 	padding: 16px;
 	border-radius: 16px 16px 0px 0px;
 	width: 100%;
-	min-height: 200px;
+	height: 200px;
 }
 
 .posting .do_post {
