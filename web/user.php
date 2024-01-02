@@ -15,7 +15,7 @@
 		<div class="main">
 			<?php if((int)$_GET['id'] == $_SESSION['user']['user_id']): ?>
 				<div class="changeuser">
-					<a href="upload.php">Изменение аватарки</a>
+					<a href="upload.php">Изменить аватарку</a>
 					 | 
 					<a href="edit.php">Настройки</a>
 				</div>
@@ -51,7 +51,8 @@
 					<button type="submit" name="do_post" class="do_post">Опубликовать</button>
 					<details class="detail">
 						<summary>Прикрепить</summary>
-						<input type="file" name="file">
+						<p>Картинка:</p>
+						<input type="file" name="file" class="file" accept=".jpg,.jpeg,.png,.webp,.gif,.bmp">
 					</details>
 				</form>
 			<?php endif; ?>
@@ -83,9 +84,9 @@
 						<a href="../method/pinpost.php?id=<?php echo($list['id']); ?>">
 							<span class="material-symbols-outlined">
 								push_pin
-							</span><br>
+							</span>
 						</a>
-					<?php endif; ?>
+					<?php endif; ?><br>
 
 					<span class="date">
 						<?php echo(date('d M Y в H:i', $list['date'])); ?>

@@ -90,8 +90,13 @@
     <div class="main_app">
         <div class="main">
             <form action="upload.php" method="post" enctype="multipart/form-data">
-                <input type="file" name="file"><br><br>
-                <button type="submit" name="upload">Изменить</button>
+                <p>
+                    <p>Новая аватарка:</p>
+                    <input type="file" name="file" class="file" accept=".jpg,.jpeg,.png,.webp,.gif,.bmp">
+                </p>
+                <p>
+                    <button type="submit" name="upload">Изменить</button>
+                </p>
             </form>
         </div>
     </div>

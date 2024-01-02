@@ -65,19 +65,19 @@
 			<div class="main">
 				<form action="register.php" method="POST">
 					<p>
-						<p>Ваш ник (Максимум 16 букв):</p>
-						<input type="text" name="username" value="<?php echo $_POST['username']; ?>">
+						<p>Ваш ник:</p>
+						<input type="text" name="username" maxlength="50" value="<?php echo $_POST['username']; ?>">
 					</p>
 					<p>
 						<p>Ваша электронная почта:</p>
 						<input type="email" name="email" value="<?php echo $_POST['email']; ?>">
 					</p>
 					<p>
-						<p>Ваш пароль (Максимум 20 букв):</p>
-						<input type="password" name="pass" value="<?php echo $_POST['pass']; ?>">
+						<p>Ваш пароль:</p>
+						<input type="password" name="pass" maxlength="20" value="<?php echo $_POST['pass']; ?>">
 					</p>
 					<p>
-						<p>Повторить ваш пароль:</p>
+						<p>Повторите ваш пароль:</p>
 						<input type="password" name="pass2">
 					</p>
 					<p>

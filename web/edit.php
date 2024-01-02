@@ -30,19 +30,31 @@
 	<div class="main_app">
 		<div class="main">
 			<form action="edit.php" method="POST">
-					<input placeholder="Имя" name="username" value="<?php echo $data['name']; ?>"><br><br>
-					<textarea placeholder="Описание" name="descr"><?php echo $data['descr']; ?></textarea><br><br>
+				<p>
+					<p>Имя: </p>
+					<input type="text" name="username" value="<?php echo $data['name']; ?>">
+				</p>
+				<p>
+					<p>Описание:</p>
+					<textarea name="descr"><?php echo $data['descr']; ?></textarea>
+				</p>
+				<p>
+					<p>Разрешить писать на моей стене:</p>
 					<select name="yespost">
-						<option selected value="0">Разрешить писать на моей стене</option>
 						<option value="0">Нельзя</option>
 						<option value="1">Можно</option>
-					</select><br><br>
+					</select>
+				</p>
+				<p>
+					<p>Тема оформления:</p>
 					<select name="theme">
-						<option selected value="md3">Тема оформления</option>
 						<option value="md1">Material Design 1</option>
 						<option value="md3">Material You</option>
-					</select><br><br>
+					</select>
+				</p>
+				<p>
 					<button type="submit" name="do_change">Изменить</button>
+				</p>
 			</form>
 		</div>
 	</div>

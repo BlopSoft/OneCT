@@ -23,7 +23,8 @@
 						<button type="submit" name="do_post" class="do_post">Опубликовать</button>
 						<details class="detail">
 							<summary>Прикрепить</summary>
-							<input type="file" name="file">
+							<p>Картинка:</p>
+							<input type="file" name="file" class="file" accept=".jpg,.jpeg,.png,.webp,.gif,.bmp">
 						</details>
 					</form>
 				<?php endif; ?>
@@ -38,7 +39,7 @@
 							<a class="user" href="user.php?id=<?php echo($list['id_user']); ?>">
 								<?php echo($user['name']); ?>
 							</a>
-						</b>
+						</b><br>
 
 						<span class="date">
 							<?php echo(date('d M Y в H:i', $list['date'])); ?>
