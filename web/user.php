@@ -25,7 +25,7 @@
 				<tr>
 					<?php if($data['img100'] != NULL): ?>
 						<td>
-							<img class="img100" src="<?php echo($_data['img100']); ?>">
+							<img class="img100" src="<?php echo($data['img100']); ?>">
 						</td>
 					<?php endif; ?>
 					<td class="info">
