@@ -71,12 +71,17 @@
 						<p><?php echo(strip_tags($list['post'])); ?></p>
 					</div>
 				<?php endwhile; ?>
-				<?php if((int)$_GET['p'] >= 1): ?>
-					<a class="back" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] - 1); ?>">Предыдущая страница</a>
-				<?php endif; ?>
-				<a class="next" href="?p=<?php echo((int)$_GET['p'] + 1); ?>">Следующая страница</a>
+				<div class="pages">
+					<?php if((int)$_GET['p'] >= 1): ?>
+						<a class="back" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] - 1); ?>">Предыдущая страница</a>
+					<?php endif; ?>
+					<?php if(mysqli_num_rows($data) == 10): ?>
+						<a class="next" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] + 1); ?>">Следующая страница</a>
+					<?php endif; ?>
+				</div>
 			</div>
 		</div>
 	</div>
+	<?php include "../include/html/footer.php" ?>
 </body>
 </html>

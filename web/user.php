@@ -21,7 +21,7 @@
 					<a href="edit.php">Настройки</a>
 				</div>
 			<?php endif ?>
-			<table>
+			<table class="user">
 				<tr>
 					<?php if($data['img100'] != NULL): ?>
 						<td>
@@ -60,9 +60,7 @@
 					</details>
 				</form>
 			<?php endif; ?>
-			<?php 
-				$data = mysqli_query($db, 'SELECT * FROM post WHERE id_user = ' .(int)$_GET['id']. ' ORDER BY pin DESC, date DESC LIMIT 10 OFFSET ' .(int)$_GET['p'] * 10);
-			?>
+			<?php $data = mysqli_query($db, 'SELECT * FROM post WHERE id_user = ' .(int)$_GET['id']. ' ORDER BY pin DESC, date DESC LIMIT 10 OFFSET ' .(int)$_GET['p'] * 10); ?>
 			<?php while($list = mysqli_fetch_assoc($data)): ?>
 				<div class="post">
 
@@ -111,11 +109,16 @@
 					<p><?php echo(strip_tags($list['post'])); ?></p>
 				</div>
 			<?php endwhile; ?>
-			<?php if((int)$_GET['p'] >= 1): ?>
-				<a class="back" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] - 1); ?>">Предыдущая страница</a>
-			<?php endif; ?>
-			<a class="next" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] + 1); ?>">Следующая страница</a>
+			<div class="pages">
+				<?php if((int)$_GET['p'] >= 1): ?>
+					<a class="back" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] - 1); ?>">Предыдущая страница</a>
+				<?php endif; ?>
+				<?php if(mysqli_num_rows($data) == 10): ?>
+					<a class="next" href="?id=<?php echo((int)$_GET['id']); ?>&p=<?php echo((int)$_GET['p'] + 1); ?>">Следующая страница</a>
+				<?php endif; ?>
+			</div>
 		</div>
 	</div>
+	<?php include "../include/html/footer.php" ?>
 </body>
 </html>

@@ -10,12 +10,12 @@
 
 ::-webkit-scrollbar{
 	background: hsl(var(--color), 90%);
-	width: 16px;
+	width: 8px;
 }
 
 ::-webkit-scrollbar-thumb{
 	background: hsl(var(--color), 80%);
-	border-radius: 8px;
+	border-radius: 4px;
 }
 
 body {
@@ -75,26 +75,22 @@ body {
 	margin: 8px;
 }
 
-.main .img50 {
-	border-radius: 25px;
-}
-
 .main .img100 {
 	border-radius: 50px;
+	width: 100px;
 }
 
-.main .info {
+.main .user {
+	width: 100%;
+}
+
+.main .user .info {
 	color: hsl(var(--color), 20%);
-	padding: 8px;
-	padding-top: 32px;
+	padding-left: 8px;
+	padding-top: 16px;
 }
 
 .main a {
-	color: hsl(var(--color), 20%);
-	text-decoration: none;
-}
-
-.user1 a {
 	color: hsl(var(--color), 20%);
 	text-decoration: none;
 }
@@ -245,7 +241,7 @@ body {
 	color: darkgray;
 }
 
-.user {
+.post .user {
 	color: hsl(var(--color), 10%);
 	text-decoration: none;
 }
@@ -255,6 +251,10 @@ body {
 	border-radius: 16px;
 	margin-top: 8px;
 	width: 100%;
+}
+
+.pages{
+	height: 80px;
 }
 
 .back {
@@ -283,4 +283,25 @@ body {
 	color: hsl(var(--color), 0%);
 	text-decoration: none;
 	box-shadow: 0px 0px 8px hsla(var(--color), 10%, 0.2);
+}
+
+.footer{
+	display: block;
+	text-align: center;
+	color: hsl(var(--color), 20%);
+	background: hsl(var(--color), 70%);
+	width: auto;
+	margin: 8px;
+	margin-top: 32px;
+	padding: 16px;
+	border-radius: 16px;
+}
+
+.footer a {
+	color: hsl(var(--color), 95%);
+	text-decoration: none;
+}
+
+.footer .links .link {
+	margin: 8px;
 }

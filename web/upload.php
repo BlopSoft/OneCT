@@ -75,13 +75,12 @@
     }
 ?>
 
-<?php
-	$data = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .$_SESSION['user']['user_id']));
-?>
+<?php $data = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .$_SESSION['user']['user_id'])); ?>
 
 <html>
 <head>
     <?php include '../include/html/head.php'; ?>
+    <title>Загрузка аватарки</title>
 </head>
 <body>
     <?php include '../include/html/header.php'; ?>
@@ -98,5 +97,6 @@
             </form>
         </div>
     </div>
+    <?php include "../include/html/footer.php" ?>
 </body>
 </html>

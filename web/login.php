@@ -43,5 +43,6 @@
 			<p><?php echo($error); ?></p>
 		</div>
 	</div>
+	<?php include "../include/html/footer.php" ?>
 </body>
 </html>

@@ -89,7 +89,9 @@
 					</p>
 				</form>
 				<p><?php echo($text); ?></p>
+				<p>При регистрации прочитайте <a href="<?php echo($url); ?>/web/terms.php">пользовательское соглашение</a> <?php echo($sitename); ?></p>
 			</div>
 		</div>
+		<?php include "../include/html/footer.php" ?>
 	</body>
 </html>

@@ -9,7 +9,7 @@
 <html>
 <head>
 	<?php include '../include/html/head.php'; ?>
-    <title>Все пользователи</title>
+    <title>Поиск</title>
 </head>
 <body>
 	<?php include '../include/html/header.php'; ?>
@@ -18,7 +18,7 @@
 			<?php $allUsers = mysqli_query($db, 'SELECT id, name, priv, img100 FROM users'); ?>
 				
 			<?php while($list = mysqli_fetch_assoc($allUsers)): ?>
-				<table>
+				<table class="user">
 					<tr>
 						<?php if($list['img100'] != NULL): ?>
 							<td><img class="img100" src="<?php echo($list['img100']); ?>"></td>
@@ -42,5 +42,6 @@
 			<?php endwhile; ?>
 		</div>
 	</div>
+	<?php include "../include/html/footer.php" ?>
 </body>
 </html>

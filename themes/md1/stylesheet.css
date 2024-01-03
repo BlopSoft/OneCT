@@ -3,6 +3,7 @@
 }
 
 body {
+	color: black;
 	background: #E0E0E0;
 	margin: 0;
 }
@@ -138,6 +139,23 @@ body {
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
+.main .user {
+	width: 100%;
+}
+
+.main .img100{
+	width: 100px;
+}
+
+.main .user .info {
+	padding-left: 8px;
+	padding-top: 16px;
+}
+.main a {
+	color: black;
+	text-decoration: none;
+}
+
 .head {
 	display: block;
 	background: #6A1B9A;
@@ -228,6 +246,10 @@ body {
 	width: 100%;
 }
 
+.pages{
+	height: 72px;
+}
+
 .back {
 	width: 30%;
 	display: block;
@@ -252,4 +274,23 @@ body {
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
 	color: black;
 	text-decoration: none;
+}
+
+.footer{
+	display: block;
+	text-align: center;
+	background: #FAFAFA;
+    padding: 16px;
+	margin-top: 32px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	border-radius: 4px;
+}
+
+.footer a {
+	color: #6A1B9A;
+	text-decoration: none;
+}
+
+.footer .links .link {
+	margin: 8px;
 }

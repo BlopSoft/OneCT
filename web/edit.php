@@ -58,5 +58,6 @@
 			</form>
 		</div>
 	</div>
+	<?php include "../include/html/footer.php" ?>
 </body>
 </html>
