@@ -29,7 +29,7 @@
 									<?php
 										echo(strip_tags($list['name']));
 
-										if ($list['priv'] == 1){ 
+										if ($list['priv'] >= 1){ 
 											echo('<span> </span>');
 											echo('<span title="Аккаунт официальный" class="material-symbols-outlined">done</span>'); 
 										}
