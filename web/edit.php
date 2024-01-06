@@ -14,9 +14,15 @@
 		WHERE id = '" .$_SESSION['user']['user_id']. "'";
 	
 	if(isset($_POST['do_change'])){
-		if(mysqli_query($db, $change)){
-			$_SESSION['theme'] = $_POST['theme'];
-			header("Location: $url");
+		if(empty(trim(strip_tags($_POST['username'])))){
+			$error = 'Ник пустой';
+		}
+		
+		if(empty($error)){
+			if(mysqli_query($db, $change)){
+				$_SESSION['theme'] = $_POST['theme'];
+				header("Location: $url");
+			}
 		}
 	}
 ?>
@@ -56,6 +62,8 @@
 					<button type="submit" name="do_change">Изменить</button>
 				</p>
 			</form>
+			<p><?php echo($error); ?></p><br>
+			<a href="pass.php">Изменить пароль</a>
 		</div>
 	</div>
 	<?php include "../include/html/footer.php" ?>

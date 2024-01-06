@@ -25,13 +25,13 @@
 
             <h2>В <?php echo($sitename); ?> модераторами являются:</h2>
 
-            <?php $allUsers = mysqli_query($db, 'SELECT id, name, priv, img100 FROM users WHERE priv > 1'); ?>
+            <?php $allUsers = mysqli_query($db, 'SELECT id, name, priv, img200 FROM users WHERE priv > 1'); ?>
 				
 			<?php while($list = mysqli_fetch_assoc($allUsers)): ?>
 				<table class="user">
 					<tr>
-						<?php if($list['img100'] != NULL): ?>
-							<td><img class="img100" src="<?php echo($list['img100']); ?>"></td>
+						<?php if($list['img200'] != NULL): ?>
+							<td><img class="img100" src="<?php echo($list['img200']); ?>"></td>
 						<?php endif; ?>
 						<td class="info">
 							<a href="user.php?id=<?php echo($list['id']); ?>">

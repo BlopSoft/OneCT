@@ -8,6 +8,18 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+CREATE TABLE `banlist` (
+  `id` int(16) NOT NULL,
+  `user_id` int(16) NOT NULL COMMENT 'ID пользователя',
+  `reason` text DEFAULT NULL COMMENT 'Причина бана'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `likes` (
+  `id` int(16) NOT NULL,
+  `post_id` int(16) NOT NULL,
+  `user_id` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `post` (
   `id` int(16) NOT NULL,
   `id_user` int(16) NOT NULL,
@@ -34,6 +46,15 @@ CREATE TABLE `users` (
   `img` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `users` (`id`, `email`, `name`, `pass`, `ip`, `descr`, `ban`, `yespost`, `priv`, `img50`, `img100`, `img200`, `img`) VALUES
+(1, 'admin@admin.org', 'Admin', '$2y$10$PPGRGSiDr8IwBocGiPF9hudubomd7a02pp7Oaot8u33/lDCTV/jD6', '::1', '', 3, '0', 0, NULL, NULL, NULL, NULL);
+
+
+ALTER TABLE `banlist`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`);
@@ -42,11 +63,17 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 
-ALTER TABLE `post`
+ALTER TABLE `banlist`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `likes`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `post`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 ALTER TABLE `users`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

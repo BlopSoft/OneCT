@@ -6,6 +6,7 @@
 *{
 	font-family: sans-serif;
 	scrollbar-color: hsl(var(--color), 80%) hsl(var(--color), 90%);
+	word-break: break-word;
 }
 
 ::-webkit-scrollbar{
@@ -183,6 +184,10 @@ body {
 	text-align: left;
 }
 
+.wall .error {
+	text-align: center;
+}
+
 .posting {
 	display: block;
 	background: hsl(var(--color), 70%);
@@ -230,10 +235,17 @@ body {
 	text-decoration: none;
 }
 
-.post a .material-symbols-outlined {
+.post .buttons {
 	float: right;
-	margin-left: 8px;
+}
+
+.post .buttons a {
 	color: hsl(var(--color), 10%);
+	text-decoration: none;
+}
+
+.post #selected a {
+	color:  hsl(var(--color), 40%);
 	text-decoration: none;
 }
 
@@ -247,7 +259,7 @@ body {
 }
 
 
-.post img {
+.post .img {
 	border-radius: 16px;
 	margin-top: 8px;
 	width: 100%;

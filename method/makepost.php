@@ -9,6 +9,7 @@
         $error = 0;
 
         if(empty(trim(strip_tags($_REQUEST['text']))) and empty($_FILES['file']['tmp_name'])){
+            $_SESSION['error'] = 'У вас нету текста!';
             $error = "Bad request / No text";
         }  
 
@@ -28,6 +29,7 @@
             
             if($date <= $antispam){
                 $error = "Bad request / Anti Spam";
+                $_SESSION['error'] = 'Вы можете писать через ' .$antispam - $date. ' секунд';
                 header("Location: " .$_SERVER['HTTP_REFERER']);
             }  
         }

@@ -88,7 +88,7 @@
 						<button type="submit" name="do_signup">Зарегестрироваться</button>
 					</p>
 				</form>
-				<p><?php echo($text); ?></p>
+				<p><?php echo($text); ?></p><br>
 				<p>При регистрации прочитайте <a href="<?php echo($url); ?>/web/terms.php">пользовательское соглашение</a> <?php echo($sitename); ?></p>
 			</div>
 		</div>

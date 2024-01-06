@@ -1,5 +1,6 @@
 *{
 	font-family: sans-serif;
+	word-break: break-word;
 }
 
 body {
@@ -156,6 +157,10 @@ body {
 	text-decoration: none;
 }
 
+.main .img {
+	width: 100%;
+}
+
 .head {
 	display: block;
 	background: #6A1B9A;
@@ -174,6 +179,11 @@ body {
 	text-align: left;
 }
 
+.wall .error {
+	text-align: center;
+	padding: 16px;
+}
+
 .posting {
 	display: block;
 	background-color: #FAFAFA;
@@ -183,6 +193,7 @@ body {
 
 .posting .postarea {
 	display: block;
+	font-size: 16px;
 	background: #FAFAFA;
 	border: none;
 	resize: none;
@@ -226,9 +237,17 @@ body {
 	text-decoration: none;
 }
 
-.post a .material-symbols-outlined {
+.post .buttons {
 	float: right;
+}
+
+.post .buttons a {
 	color: black;
+	text-decoration: none;
+}
+
+.post #selected a {
+	color: #6A1B9A;
 	text-decoration: none;
 }
 
@@ -241,7 +260,7 @@ body {
 	text-decoration: none;
 }
 
-.post img {
+.post .img {
 	margin-top: 8px;
 	width: 100%;
 }

@@ -11,6 +11,7 @@
 	if(token_data($_SESSION['user']['access_token'])['error'] == 0){
 		if($postdata['id_user'] or $postdata['id_who'] == $_SESSION['user']['user_id'] or $user_data['priv'] >= 2){
 			if(mysqli_query($db, $delete)){
+				mysqli_query($db, 'DELETE FROM likes WHERE post_id = ' .(int)$_GET['id']);
 				unlink($postdata['img']);
 				header("Location: " .$_SERVER['HTTP_REFERER']);
 			}

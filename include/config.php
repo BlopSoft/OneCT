@@ -3,10 +3,10 @@
 
     session_start();
 
-    $url = "http://" .$_SERVER['HTTP_HOST'];
-    $sitename = "OneConnect";
-    $favicon = "favicon.png";
-    $style = "md1";
+    $url = 'http://' .$_SERVER['HTTP_HOST'] /* . '/onect' */;
+    $sitename = 'OneConnect';
+    $favicon = 'favicon.png';
+    $style = 'md1';
     $enable_antispam = true;
     $antispam = 60;
 
