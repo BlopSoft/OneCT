@@ -80,7 +80,7 @@
 					<?php $user = mysqli_fetch_assoc(mysqli_query($db, 'SELECT name FROM users WHERE id = ' .$list['user_id'])); ?>
 					
 					<b>
-						<a class="user" href="user.php?id=<?php echo($list['id_user']); ?>">
+						<a class="user" href="user.php?id=<?php echo($list['user_id']); ?>">
 							<?php echo($user['name']); ?>
 						</a>
 					</b>
