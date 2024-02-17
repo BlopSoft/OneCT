@@ -1,6 +1,8 @@
 <?php
 	require_once "../include/config.php";
 
+	$all = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .(int)$_SESSION['user']['user_id']));
+
 	if(empty($_SESSION['user'])){
 		header("Location: login.php");
 	}
