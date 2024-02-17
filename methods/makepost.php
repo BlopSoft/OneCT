@@ -4,9 +4,10 @@
 
     $user_id = $_SESSION['user']['user_id']; 
     $owner_id = mysqli_query($db, 'SELECT yespost FROM users WHERE id =' .(int)$_REQUEST['owner_id']);
+    $error = 0;
+    $errorimg = 0;
 
     if(token_data($_SESSION['user']['access_token'])['error'] == 0){
-        $error = 0;
 
         if(empty(trim(strip_tags($_REQUEST['text']))) and empty($_FILES['file']['tmp_name'])){
             http_response_code(400);
@@ -42,9 +43,7 @@
         // Загрузка
 
         function fuckimg($src, $width, $height){
-            global $_FILES, $error;
-
-            $error = 0;
+            global $_FILES, $error, $errorimg;
 
             if($_FILES['file']['type'] == 'image/jpeg'){
                 $file = imagecreatefromjpeg($src);
@@ -57,10 +56,19 @@
             } elseif($_FILES['file']['type'] == 'image/webp'){
                 $file = imagecreatefromwebp($src);
             } else {
-                $error = "";
+                $errorimg = 1;
+                $error = "Bad request / Bad image"; 
             }
-    
-            if($error == 0){
+
+            $imgwidth= imagesx($file);
+            $imgheight= imagesy($file);
+            
+            if(($imgheight / $imgwidth) >= 2.5){
+                $errorimg = 1;
+                $error = "Bad request / Bad image"; 
+            } 
+            
+            if($errorimg == 0){
                 $imgwidth= imagesx($file);
                 $imgheight= imagesy($file);
     
@@ -90,7 +98,7 @@
 
         // Конец этого
 
-        if($error == 0){
+        if($error == 0 or $errorimg == 0){
             if($_FILES['file']['error'] != 0){
                 $post = "INSERT INTO post(id_user, id_who, post, date) VALUES (
                     '" .(int)$_REQUEST['owner_id']. "',
@@ -112,6 +120,9 @@
                 header("Location: " .$_SERVER['HTTP_REFERER']);
             }
             
+        } else {
+            http_response_code(400);
+            header("Location: " .$_SERVER['HTTP_REFERER']);
         }
     } else {
         http_response_code(400);
