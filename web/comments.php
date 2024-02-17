@@ -56,7 +56,7 @@
 						<img src="../imgs/like.gif" alt="like ">
 						<span class="likecount"><?php echo($likes); ?></span>
 					</a>
-				</div>
+				</div><br>
 			</div>
 			<div class="opencom"></div>
 
