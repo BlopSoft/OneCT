@@ -80,7 +80,7 @@
 						}
 					?>
 
-					<p><?php echo(strip_tags($list['post'])); ?></p>
+					<p><?php echo(preg_replace('/(https?:\/\/\S+)/', '<a href="$1">$1</a>', strip_tags($list['post']))); ?></p>
 
 					<?php if(isset($_SESSION['user'])): ?>
 						<?php $yourlike = mysqli_num_rows(mysqli_query($db, 'SELECT * FROM likes WHERE post_id = ' .$list['id']. ' AND user_id = ' .$_SESSION['user']['user_id'])); ?>

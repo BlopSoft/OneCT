@@ -47,7 +47,7 @@
 					}
 				?>
 
-				<p><?php echo(strip_tags($list['post'])); ?></p>
+				<p><?php echo(preg_replace('/(https?:\/\/\S+)/', '<a href="$1">$1</a>', strip_tags($list['post']))); ?></p>
 
 				<div class="buttons">
 					<a class="like">
@@ -97,7 +97,7 @@
 						<?php echo(date($lang_date, $list['date'])); ?>
 					</span><br>
 
-					<p><?php echo(strip_tags($list['text'])); ?></p>
+					<p><?php echo(preg_replace('/(https?:\/\/\S+)/', '<a href="$1">$1</a>', strip_tags($list['text']))); ?></p>
 				</div>
 				<div class="opencom"></div>
 			<?php endwhile; ?>
