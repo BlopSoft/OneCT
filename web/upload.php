@@ -22,7 +22,7 @@
             } elseif($_FILES['file']['type'] == 'image/webp'){
                 $file = imagecreatefromwebp($src);
             } else {
-                $error = 1;
+                $error = "";
             }
 
             if($error == 0){
@@ -69,8 +69,14 @@
 
             header("Location: $url");
         } else {
-            echo('Ошибка загрузки файла');
-            echo('<hr>');
+            mysqli_query($db, 'UPDATE users SET 
+                img50="",
+                img100="",
+                img200="",
+                img=""
+                WHERE id = ' .$_SESSION['user']['user_id']);
+
+            header("Location: $url");
         }
     }
 ?>
@@ -100,3 +106,5 @@
     <?php include "../include/html/footer.php" ?>
 </body>
 </html>
+
+<?php mysqli_close($db);

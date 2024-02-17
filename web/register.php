@@ -95,3 +95,4 @@
 		<?php include "../include/html/footer.php" ?>
 	</body>
 </html>
+<?php mysqli_close($db);

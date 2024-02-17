@@ -1,9 +1,7 @@
 <?php 
     require_once '../include/config.php';
 
-    if($_SESSION['user']['admin'] != 1){
-        header("Location: $url");
-    }
+    include 'checkuser.php';
 
     $users = mysqli_query($db, 'SELECT * FROM users');
     

@@ -20,7 +20,6 @@
 		
 		if(empty($error)){
 			if(mysqli_query($db, $change)){
-				$_SESSION['theme'] = $_POST['theme'];
 				header("Location: $url");
 			}
 		}
@@ -29,7 +28,7 @@
 <html>
 <head>
 	<?php include '../include/html/head.php'; ?>
-    <title>Изменение аккаунта</title>
+    <title><?php echo($lang_settings); ?></title>
 </head>
 <body>
 	<?php include '../include/html/header.php'; ?>
@@ -37,35 +36,29 @@
 		<div class="main">
 			<form action="edit.php" method="POST">
 				<p>
-					<p>Имя: </p>
+					<p><?php echo($lang_nickname); ?></p>
 					<input type="text" name="username" value="<?php echo $data['name']; ?>">
 				</p>
 				<p>
-					<p>Описание:</p>
+					<p><?php echo($lang_description); ?></p>
 					<textarea name="descr"><?php echo $data['descr']; ?></textarea>
 				</p>
 				<p>
-					<p>Разрешить писать на моей стене:</p>
+					<p><?php echo($lang_yespost); ?></p>
 					<select name="yespost">
-						<option value="0">Нельзя</option>
-						<option value="1">Можно</option>
+						<option <?php if($data['yespost'] == 0) echo('selected'); ?> value="0"><?php echo($lang_no); ?></option>
+						<option <?php if($data['yespost'] == 1) echo('selected'); ?> value="1"><?php echo($lang_yes); ?></option>
 					</select>
 				</p>
 				<p>
-					<p>Тема оформления:</p>
-					<select name="theme">
-						<option value="md1">Material Design 1</option>
-						<option value="md3">Material You</option>
-					</select>
-				</p>
-				<p>
-					<button type="submit" name="do_change">Изменить</button>
+					<button type="submit" name="do_change"><?php echo($lang_change); ?></button>
 				</p>
 			</form>
 			<p><?php echo($error); ?></p><br>
-			<a href="pass.php">Изменить пароль</a>
+			<a href="pass.php"><?php echo($lang_changepass); ?></a>
 		</div>
 	</div>
 	<?php include "../include/html/footer.php" ?>
 </body>
 </html>
+<?php mysqli_close($db);

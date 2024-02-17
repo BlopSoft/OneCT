@@ -74,38 +74,51 @@ body {
 
 .file {
 	font-size: 16px;
-	width: 100%;
 	display: block;
+	height: auto !important;
+	background: none !important;
+	box-shadow: none !important;
+	padding: 0px !important;
+}
+
+.file::file-selector-button {
+	font-size: 16px;
 	height: 32px;
 	background: #F5F5F5;
 	border: none;
 	height: auto !important;
 	padding: 16px;
 	border-radius: 4px;
-	margin-bottom: 16px;
+	margin: 8px;
+	margin-right: 16px;
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
 .main input {
+	color: black;
 	font-size: 16px;
 	width: 100%;
 	display: block;
 	height: 32px;
 	background: #F5F5F5;
 	border: none;
-	padding: 16px;
+	padding: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
 	border-radius: 4px;
 	margin-bottom: 16px;
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
 .main select {
+	color: black;
 	font-size: 16px;
 	width: 100%;
 	display: block;
 	height: 32px;
 	background: #F5F5F5;
 	border: none;
+	padding: 4px;
 	padding-left: 16px;
 	padding-right: 16px;
 	border-radius: 4px;
@@ -114,6 +127,7 @@ body {
 }
 
 .main textarea {
+	color: black;
 	font-size: 16px;
 	width: 100%;
 	display: block;
@@ -217,41 +231,67 @@ body {
 	padding: 16px;
 }
 
-.posting .detail input{
+.posting .detail a {
+	color: black;
+	text-decoration: none;
+}
+
+.posting .detail #menu{
+	display: none;
+}
+
+.posting .detail #menu input{
 	width: 100%;
 }
 
-.post {
+.block {
 	display: block;
 	background: #FAFAFA;
 	margin: 8px;
+	margin-bottom: 0px;
 	padding: 16px;
-	border-radius: 4px;
+	border-radius: 4px 4px 0px 0px;
 	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
 	color: black;
 	text-decoration: none;
 }
 
-.post .user {
+.opencom {
+	display: block;
+	background: #FAFAFA;
+	margin: 8px;
+	margin-top: 0px;
+	padding: 16px;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+	color: black;
+}
+
+.opencom a {
 	color: black;
 	text-decoration: none;
 }
 
-.post .buttons {
+.block .user {
+	color: black;
+	text-decoration: none;
+}
+
+.block .buttons {
 	float: right;
 }
 
-.post .buttons a {
+.block .buttons a {
 	color: black;
 	text-decoration: none;
 }
 
-.post #selected a {
+.block #selected a {
 	color: #6A1B9A;
 	text-decoration: none;
 }
 
-.post .date {
+.block .date {
 	color: darkgray;
 }
 
@@ -260,7 +300,7 @@ body {
 	text-decoration: none;
 }
 
-.post .img {
+.block .img {
 	margin-top: 8px;
 	width: 100%;
 }

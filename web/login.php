@@ -2,11 +2,11 @@
 	require_once "../include/config.php";
 
 	if(isset($_SESSION['user'])){
-		header("Location: $url/web");
+		header("Location: $url");
 	}
 
 	if(isset($_POST['do_login'])){
-		$data = json_decode(file_get_contents($url. '/api/token.php?username=' .$_POST['username']. '&password=' .$_POST['password']. '&grant_type=password'), true);
+		$data = json_decode(file_get_contents($url. '/api/login.php?username=' .urlencode($_POST['username']). '&password=' .urlencode($_POST['password'])), true);
 
 		if(empty($data['error_code'])){
 			$_SESSION['user'] = $data;
@@ -46,3 +46,4 @@
 	<?php include "../include/html/footer.php" ?>
 </body>
 </html>
+<?php mysqli_close($db);

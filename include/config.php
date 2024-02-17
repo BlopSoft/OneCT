@@ -7,10 +7,17 @@
     $sitename = 'OneConnect';
     $favicon = 'favicon.png';
     $style = 'md1';
+    $lang = 'ru.php';
     $enable_antispam = true;
     $antispam = 60;
+    $links = array(
+        'Telegram' => 'https://t.me/blopsoft',
+        'Github' => 'https://github.com/blopsoft/onect'
+    );
 
     // Выполнение конфига
+
+    include "../lang/$lang";
 
     $db = mysqli_connect(
         $dbconn['server'], 

@@ -14,6 +14,14 @@ CREATE TABLE `banlist` (
   `reason` text DEFAULT NULL COMMENT 'Причина бана'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `comments` (
+  `id` int(16) NOT NULL,
+  `post_id` int(16) NOT NULL,
+  `user_id` int(16) NOT NULL,
+  `text` varchar(512) NOT NULL,
+  `date` int(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `likes` (
   `id` int(16) NOT NULL,
   `post_id` int(16) NOT NULL,
@@ -47,10 +55,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `email`, `name`, `pass`, `ip`, `descr`, `ban`, `yespost`, `priv`, `img50`, `img100`, `img200`, `img`) VALUES
-(1, 'admin@admin.org', 'Admin', '$2y$10$PPGRGSiDr8IwBocGiPF9hudubomd7a02pp7Oaot8u33/lDCTV/jD6', '::1', '', 3, '0', 0, NULL, NULL, NULL, NULL);
+(1, 'admin@admin.org', 'Admin', '$2y$10$wqy6H/8Yy1CV1OrZcE22nOdMLXDet2I2O37mwgHoSO83Fv976ZgD6', '0', '', 0, '0', 3, '', '', '', '');
 
 
 ALTER TABLE `banlist`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 ALTER TABLE `likes`
@@ -64,16 +75,19 @@ ALTER TABLE `users`
 
 
 ALTER TABLE `banlist`
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+ALTER TABLE `comments`
   MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `likes`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `post`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `users`
-  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(16) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

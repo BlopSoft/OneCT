@@ -6,8 +6,13 @@
 	}
 
 	$change = "UPDATE users SET pass = '" .password_hash($_POST['pass'], PASSWORD_DEFAULT). "' WHERE id = '" .$_SESSION['user']['user_id']. "'";
-	
+	$user = mysqli_fetch_assoc(mysqli_query($db, 'SELECT pass FROM users where id = ' .(int)$_SESSION['user']['user_id']));
+
 	if(isset($_POST['do_change'])){
+		if(!password_verify($_POST['oldpass'], $user['pass'])){
+			$error = 'Старый пароль не верный!';
+		}
+
 		if($_POST['pass'] != $_POST['pass2']){
 			$error = '2 пароль не верный';
 		}
@@ -18,7 +23,7 @@
 		
 		if(empty($error)){
 			mysqli_query($db, $change);
-			header("Location: $url");
+			header("Location: logout.php");
 		}
 	}
 ?>
@@ -31,13 +36,18 @@
 	<?php include '../include/html/header.php'; ?>
 	<div class="main_app">
 		<div class="main">
+			<h1>После смены пароля вы должны перезайти в аккаунт!</h1>
 			<form action="pass.php" method="POST">
 				<p>
-					<p>Пароль: </p>
+					<p>Старый Пароль: </p>
+					<input type="password" name="oldpass">
+				</p>
+				<p>
+					<p>Новый Пароль: </p>
 					<input type="password" name="pass">
 				</p>
 				<p>
-					<p>Повторите пароль:</p>
+					<p>Повторите новый пароль:</p>
 					<input type="password" name="pass2">
 				</p>
 				<p>
@@ -50,3 +60,4 @@
 	<?php include "../include/html/footer.php" ?>
 </body>
 </html>
+<?php mysqli_close($db);

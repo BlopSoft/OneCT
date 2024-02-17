@@ -4,5 +4,5 @@
 	unset($_SESSION['user']);
 
 	header("Location: $url");
-?>
 
+	mysqli_close($db);
