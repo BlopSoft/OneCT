@@ -22,12 +22,19 @@
             } elseif($_FILES['file']['type'] == 'image/webp'){
                 $file = imagecreatefromwebp($src);
             } else {
-                $error = "";
+                $error = "1";
+            }
+
+            $imgwidth= imagesx($file);
+            $imgheight= imagesy($file);
+            
+            if(($imgheight / $imgwidth) >= 1.5){
+                $error = "1";
+            } elseif(($imgheight / $imgwidth) <= 0.9){
+                $error = "1";
             }
 
             if($error == 0){
-                $imgwidth= imagesx($file);
-                $imgheight= imagesy($file);
 
                 if($width == 0){
                     $width = ($height / $imgwidth) * $imgheight;
