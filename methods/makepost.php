@@ -97,7 +97,9 @@
 
         // Конец этого
 
-        unlink(fuckimg($_FILES['file']['tmp_name'], 0, 50));
+        if($_FILES['file']['error'] == 0){
+            unlink(fuckimg($_FILES['file']['tmp_name'], 0, 50));
+        }
 
         if($error == 0){
             if($_FILES['file']['error'] != 0){
