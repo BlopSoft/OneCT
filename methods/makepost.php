@@ -5,7 +5,6 @@
     $user_id = $_SESSION['user']['user_id']; 
     $owner_id = mysqli_query($db, 'SELECT yespost FROM users WHERE id =' .(int)$_REQUEST['owner_id']);
     $error = 0;
-    $errorimg = 0;
 
     if(token_data($_SESSION['user']['access_token'])['error'] == 0){
 
@@ -43,7 +42,7 @@
         // Загрузка
 
         function fuckimg($src, $width, $height){
-            global $_FILES, $error, $errorimg;
+            global $_FILES, $error;
 
             if($_FILES['file']['type'] == 'image/jpeg'){
                 $file = imagecreatefromjpeg($src);
@@ -56,7 +55,7 @@
             } elseif($_FILES['file']['type'] == 'image/webp'){
                 $file = imagecreatefromwebp($src);
             } else {
-                $errorimg = 1;
+                $_SESSION['error'] = 'Формат картинки плохой';
                 $error = "Bad request / Bad image"; 
             }
 
@@ -64,11 +63,14 @@
             $imgheight= imagesy($file);
             
             if(($imgheight / $imgwidth) >= 2.5){
-                $errorimg = 1;
+                $_SESSION['error'] = 'Разрешение картинки плохое';
                 $error = "Bad request / Bad image"; 
-            } 
+            } elseif(($imgheight / $imgwidth) <= 0.3){
+                $_SESSION['error'] = 'Разрешение картинки плохое';
+                $error = "Bad request / Bad image"; 
+            }
             
-            if($errorimg == 0){
+            if($error == 0){
                 $imgwidth= imagesx($file);
                 $imgheight= imagesy($file);
     
@@ -90,15 +92,14 @@
     
                 imagedestroy($file);
                 imagedestroy($size);
-            } else {
-                http_response_code(400);
-                echo "Bad request / File error";
             }
         }
 
         // Конец этого
 
-        if($error == 0 or $errorimg == 0){
+        unlink(fuckimg($_FILES['file']['tmp_name'], 0, 50));
+
+        if($error == 0){
             if($_FILES['file']['error'] != 0){
                 $post = "INSERT INTO post(id_user, id_who, post, date) VALUES (
                     '" .(int)$_REQUEST['owner_id']. "',
