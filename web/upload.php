@@ -57,6 +57,8 @@
             }
         }
 
+        unlink(fuckimg($_FILES['file']['tmp_name'], 0, 50));
+
         if($error = 0 or $_FILES['file']['error'] == 0){
             $img = mysqli_fetch_assoc(mysqli_query($db, 'SELECT * FROM users WHERE id = ' .$_SESSION['user']['user_id']));
 
