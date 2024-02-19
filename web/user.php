@@ -64,7 +64,7 @@
 							<img src="../imgs/close.gif" id="detailicon">
 							<?php echo($lang_attach); ?>
 						</a>
-						<div id="menu">
+						<div id="menu" style="display: none;">
 							<p><?php echo($lang_image); ?></p>
 							<input type="file" name="file" class="file" accept=".jpg,.jpeg,.png,.webp,.gif,.bmp">
 						</div>
