@@ -1,30 +1,35 @@
-* {
-	font-family: 'Roboto', sans-serif;
+*{
+	font-family: sans-serif;
 	word-break: break-word;
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
 }
 
 body {
-	color: #333;
+	color: black;
 	background: #E0E0E0;
+	margin: 0;
 }
 
+
 .header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	background: #4A148C;
+	display: block;
+   	background: #4A148C;
 	color: white;
+	text-decoration: none;
 	padding: 16px;
-	padding-bottom: 24px;
-	font-size: 24px;
-	box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.5);
+	padding-bottom: 48px;
+   	font-size: 24px;
+	box-shadow: 0px 5px 8px rgba(0,0,0,0.5);
+	left: 0;
 	position: sticky;
+    right: 0;
 	top: 0;
-	width: 100%;
-	z-index: 1;
+    z-index: 1;
+}
+
+@media screen and (max-width: 510px){
+	.header {
+		padding-bottom: 80px;
+	}
 }
 
 .header a {
@@ -33,100 +38,108 @@ body {
 }
 
 .header .sitename {
-	flex: 1;
+	float: left;
 }
 
 .header .href {
 	margin-left: 12px;
-}
-
-@media screen and (max-width: 510px) {
-	.header {
-		flex-direction: column;
-		padding-bottom: 32px;
-	}
+	float: right;
 }
 
 .main_app {
 	margin: 0 auto;
-	max-width: 800px;
-	padding: 16px;
+	max-width: 580px;
 }
 
 .main {
-	background: #FFFFFF;
-	padding: 24px;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
-	margin-top: 16px;
+	background: #FAFAFA;
+    padding: 16px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	border-radius: 0px 0px 4px 4px;
 }
 
 .main .info {
 	padding: 8px;
-	padding-top: 24px;
+	padding-top: 32px;
 }
 
 .changeuser {
 	text-align: right;
-	margin-bottom: 16px;
 }
 
 .changeuser a {
-	color: #4A148C;
+	color: black;
 	text-decoration: none;
 }
 
 .file {
 	font-size: 16px;
 	display: block;
-	background: none;
-	box-shadow: none;
-	padding: 0;
-	border: none;
+	height: auto !important;
+	background: none !important;
+	box-shadow: none !important;
+	padding: 0px !important;
 }
 
 .file::file-selector-button {
 	font-size: 16px;
-	height: 40px;
+	height: 32px;
 	background: #F5F5F5;
-	border: 1px solid #CCCCCC;
-	border-radius: 8px;
-	padding: 8px 16px;
-	margin: 8px 16px 8px 0;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+	border: none;
+	height: auto !important;
+	padding: 16px;
+	border-radius: 4px;
+	margin: 8px;
+	margin-right: 16px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
-.file::file-selector-button:hover {
-	background: #E0E0E0;
-}
-
-.main input,
-.main select,
-.main textarea {
-	color: #333;
+.main input {
+	color: black;
 	font-size: 16px;
 	width: 100%;
-	background: #FFFFFF;
-	border: 1px solid #CCCCCC;
-	border-radius: 8px;
-	padding: 12px 16px;
+	display: block;
+	height: 32px;
+	background: #F5F5F5;
+	border: none;
+	padding: 8px;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-radius: 4px;
 	margin-bottom: 16px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
-.main input:focus,
-.main select:focus,
-.main textarea:focus {
-	border-color: #4A148C;
-	box-shadow: 0px 0px 8px rgba(74, 20, 140, 0.2);
-	outline: none;
+.main select {
+	color: black;
+	font-size: 16px;
+	width: 100%;
+	display: block;
+	height: 32px;
+	background: #F5F5F5;
+	border: none;
+	padding: 4px;
+	padding-left: 16px;
+	padding-right: 16px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
 .main textarea {
-	resize: vertical;
+	color: black;
+	font-size: 16px;
+	width: 100%;
+	display: block;
+	height: 32px;
+	background: #F5F5F5;
+	border: none;
+	padding: 16px;
+	border-radius: 4px;
+	margin-bottom: 16px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
+	height: 200px;
+	resize: none;
 }
 
 .main button {
@@ -136,58 +149,45 @@ body {
 	width: 100%;
 	padding: 16px;
 	border: none;
-	border-radius: 8px;
+	border-radius: 4px;
 	margin-bottom: 16px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.main button:hover {
-	background: #E0E0E0;
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.5);
 }
 
 .main .user {
 	width: 100%;
-	display: flex;
-	align-items: center;
 }
 
-.main .img100 {
+.main .img100{
 	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	object-fit: cover;
 }
 
 .main .user .info {
-	padding-left: 16px;
+	padding-left: 8px;
+	padding-top: 16px;
 }
-
 .main a {
-	color: #4A148C;
+	color: black;
 	text-decoration: none;
-}
-
-.main a:hover {
-	text-decoration: underline;
 }
 
 .main .img {
 	width: 100%;
-	border-radius: 8px;
 }
 
 .head {
+	display: block;
 	background: #6A1B9A;
-	padding: 24px;
-	border-radius: 8px 8px 0 0;
+	padding: 16px;
+	margin: 0px;
+	margin-top: 8px;
+	border-radius: 4px 4px 0px 0px;
 	text-align: center;
 	color: white;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-	margin-bottom: -8px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
 }
+
+/* Для постов */
 
 .wall {
 	text-align: left;
@@ -199,91 +199,86 @@ body {
 }
 
 .posting {
-	background-color: #FFFFFF;
-	border-radius: 8px;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-	margin-top: 16px;
+	display: block;
+	background-color: #FAFAFA;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
 }
 
 .posting .postarea {
+	display: block;
 	font-size: 16px;
 	background: #FAFAFA;
-	border: 1px solid #CCCCCC;
-	resize: vertical;
+	border: none;
+	resize: none;
 	padding: 16px;
 	width: 100%;
 	height: 200px;
-	border-radius: 8px 8px 0 0;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .posting .do_post {
+	display: block;
 	background: #EEEEEE;
 	font-size: 16px;
 	width: 100%;
 	padding: 16px;
 	border: none;
-	border-radius: 0 0 8px 8px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
 }
 
-.posting .do_post:hover {
-	background: #E0E0E0;
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.posting .detail {
+.posting .detail{
 	padding: 16px;
 }
 
 .posting .detail a {
-	color: #4A148C;
+	color: black;
 	text-decoration: none;
 }
 
-.posting .detail #menu {
+.posting .detail #menu{
 	display: none;
 }
 
-.posting .detail #menu input {
+.posting .detail #menu input{
 	width: 100%;
 }
 
 .block {
-	background: #FFFFFF;
-	margin: 8px 0;
-	padding: 24px;
-	border-radius: 8px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	text-decoration: none;
+	display: block;
+	background: #FAFAFA;
+	margin: 8px;
+	margin-bottom: 0px;
+	padding: 16px;
+	border-radius: 4px 4px 0px 0px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
 	color: black;
+	text-decoration: none;
 }
 
 .opencom {
-	background: #FFFFFF;
-	margin: 8px 0;
-	padding: 24px;
-	border-radius: 8px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	display: block;
+	background: #FAFAFA;
+	margin: 8px;
+	margin-top: 0px;
+	padding: 16px;
+	border-radius: 0px 0px 4px 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
 	color: black;
 }
 
 .opencom a {
-	color: #4A148C;
+	color: black;
 	text-decoration: none;
 }
 
 .block .user {
 	color: black;
 	text-decoration: none;
-	display: flex;
-	align-items: center;
 }
 
 .block .buttons {
-	margin-left: auto;
+	float: right;
 }
 
 .block .buttons a {
@@ -306,44 +301,48 @@ body {
 }
 
 .block .img {
-	margin-top: 16px;
+	margin-top: 8px;
 	width: 100%;
-	border-radius: 8px;
 }
 
-.pages {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 16px 0;
+.pages{
+	height: 72px;
 }
 
-.back,
-.next {
+.back {
 	width: 30%;
-	background: #FFFFFF;
+	display: block;
+	float: left;
+	background: #FAFAFA;
+	margin: 8px;
 	padding: 16px;
-	border-radius: 8px;
-	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
 	color: black;
 	text-decoration: none;
-	text-align: center;
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.back:hover,
-.next:hover {
-	background: #F5F5F5;
-	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+.next {
+	width: 30%;
+	display: block;
+	float: right;
+	background: #FAFAFA;
+	margin: 8px;
+	padding: 16px;
+	border-radius: 4px;
+	box-shadow: 0px 2px 5px rgba(0,0,0,0.75);
+	color: black;
+	text-decoration: none;
 }
 
-.footer {
+.footer{
+	display: block;
 	text-align: center;
-	background: #FFFFFF;
-	padding: 24px;
+	background: #FAFAFA;
+    padding: 16px;
 	margin-top: 32px;
-	box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 8px;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+	border-radius: 4px;
 }
 
 .footer a {
