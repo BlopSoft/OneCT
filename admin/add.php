@@ -6,6 +6,13 @@
     $users = mysqli_query($db, 'SELECT * FROM users');
     
     if(isset($_POST['ban'])){
+        if($_SESSION['user']['admin'] != 1){
+            mysqli_query($db, "UPDATE users SET ban = 1 WHERE id = " .(int)$_SESSION['user']['user_id']);
+            mysqli_query($db, "INSERT INTO banlist (user_id, reason) VALUES (" .$_SESSION['user']['user_id']. ", 'Был забанен за попытку взлома OneConnect')");
+            header("Location: $url");
+        }
+
+        mysqli_query($db, "UPDATE users SET ban = 1 WHERE id = " .(int)$_POST['user']);
         mysqli_query($db, "INSERT INTO banlist (user_id, reason) VALUES (" .$_POST['user']. ", '" .$_POST['reason']. "')");
         header("Location: banlist.php");
     }

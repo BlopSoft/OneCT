@@ -8,6 +8,7 @@
     
         if(isset($_POST['edit_user'])){
             if($_SESSION['user']['admin'] != 1){
+                mysqli_query($db, "UPDATE users SET ban = 1 WHERE id = " .(int)$_SESSION['user']['user_id']);
                 mysqli_query($db, "INSERT INTO banlist (user_id, reason) VALUES (" .$_SESSION['user']['user_id']. ", 'Был забанен за попытку взлома OneConnect')");
                 header("Location: $url");
             }
