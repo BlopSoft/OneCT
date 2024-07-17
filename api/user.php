@@ -1,5 +1,5 @@
 <?php 
-    ini_set('display_errors', true); // Скрываем рукожопость автора
+    ini_set('display_errors', false); // Скрываем рукожопость автора
 
     require_once "config.php";
 
