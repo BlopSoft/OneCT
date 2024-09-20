@@ -4,7 +4,7 @@
     session_start();
 
     $url = 'http://' .$_SERVER['HTTP_HOST'] /* . '/onect' */;
-    $sitename = 'OneConnect';
+    $sitename = 'OneCT';
     $favicon = 'favicon.png';
     $style = 'md1';
     $lang = 'ru.php';
