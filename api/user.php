@@ -112,8 +112,14 @@
             $response = array();
             
             $get_user_token = $db->query("SELECT * FROM users WHERE token = " .$db->quote($token));
+            $user_data = $get_user_token->fetch();
 
             if(!empty(trim($token)) or $token != null){
+                if($user_data['ban'] == 1){
+                    $db->query("UPDATE users SET token='' WHERE token=" .$db->quote($token));
+                    header("Refresh: 0");
+                }
+
                 if($get_user_token->rowCount() == 0){
                     // Ты не фигел?
 
@@ -187,6 +193,11 @@
                         'error' => 'Bad token'
                     );
                 } else{
+                    if($img['ban'] == 1){
+                        $db->query("UPDATE users SET token='' WHERE token=" .$db->quote($token));
+                        header("Refresh: 0");
+                    }
+
                     $error = 0;
 
                     if(empty($_FILES['file']['tmp_name'])){
@@ -310,6 +321,6 @@
                 echo json_encode(array('error' => 'Invalid method'));
                 break;
         }
-    }
 
-    $db = null;
+        $db = null;
+    }

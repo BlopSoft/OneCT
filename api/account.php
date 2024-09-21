@@ -8,7 +8,7 @@
             global $db;
             $response = array();
             
-            $query = $db->query("SELECT token, pass, id FROM users WHERE email = " .$db->quote($email));
+            $query = $db->query("SELECT token, pass, id, ban FROM users WHERE email = " .$db->quote($email));
             $info = $query->fetch();
 
             // Ты точно есть?
@@ -21,6 +21,11 @@
 
             if(!password_verify($pass, $info['pass'])){
                 $response = array('error' => 'Bad login or password');
+            }
+
+            if($info['ban'] == 1){
+                $db->query("UPDATE users SET token='' WHERE email=" .$db->quote($_REQUEST['email']));
+                $response = array('error' => 'Your account has been banned');
             }
 
             // Проходи
@@ -57,6 +62,11 @@
             $get_user_token = $db->query("SELECT * FROM users WHERE token = " .$db->quote($token));
 
             if(!empty(trim($token)) or $token != null){
+                if($get_user_token->fetch()['ban'] == 1){
+                    $db->query("UPDATE users SET token='' WHERE token=" .$db->quote($token));
+                    header("Refresh: 0");
+                }
+
                 if($get_user_token->rowCount() == 0){
                     // Сам знаешь
 
@@ -95,6 +105,8 @@
                 echo json_encode(array('error' => 'Invalid method'));
                 break;
         }
+
+        $db = null;
     }
 
-    $db = null;
+    

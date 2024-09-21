@@ -54,6 +54,11 @@
                         'error' => 'Bad token'
                     );
                 } else {
+                    if($user_data['ban'] == 1){
+                        $db->query("UPDATE users SET token='' WHERE token=" .$db->quote($token));
+                        header("Refresh: 0");
+                    }
+                    
                     $post = $db->query("SELECT * FROM comments WHERE id = " .(int)$id)->fetch();
 
                     if($post['id_user'] == $user_data['id'] or $user_data['priv'] >= 2){
@@ -165,6 +170,8 @@
                 echo json_encode(array('error' => 'Invalid method'));
                 break;
         }
+
+        $db = null;
     }
 
-    $db = null;
+    

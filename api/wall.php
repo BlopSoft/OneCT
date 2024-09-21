@@ -234,6 +234,11 @@
                         'error' => 'Bad token'
                     );
                 } else {
+                    if($user_data['ban'] == 1){
+                        $db->query("UPDATE users SET token='' WHERE token=" .$db->quote($token));
+                        header("Refresh: 0");
+                    }
+
                     $error = 0;
 
                     if(empty(trim($text)) and empty($_FILES['file']['tmp_name'])){
@@ -398,6 +403,6 @@
                 echo json_encode(array('error' => 'Invalid method'));
                 break;
         }
-    }
 
-    $db = null;
+        $db = null;
+    }
