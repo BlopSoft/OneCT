@@ -1,7 +1,7 @@
 <?php 
     ini_set('display_errors', false); // Скрываем рукожопость автора
 
-    require_once "config.php";
+    require_once "../include/config.php";
 
     // Извини, мне заебало вставлять комментариии, поэтому без них
 
@@ -19,11 +19,25 @@
                         'error' => 'Bad token'
                     );
                 } else {
+                    $wall = $db->query("SELECT * FROM post WHERE id = " .(int)$id)->fetch(PDO::FETCH_ASSOC);
+
+                    $response['post'] = [
+                        'id' => (int)$wall['id'],
+                        'id_from' => (int)$wall['id_user'],
+                        'user_id' => (int)$wall['id_who'],
+                        'text' => $wall['post'],
+                        'date' => (int)$wall['date']
+                    ];
+
+                    if($wall['img'] != null){
+                        $response['post']['image'] = $url . substr($wall['img'], 2);
+                    }
+
                     $query = $db->query("SELECT * FROM comments WHERE post_id = " .(int)$id. " ORDER BY date ASC LIMIT 10 OFFSET " .(int)$page * 10);
 
                     $i = 0;
                     while($list = $query->fetch(PDO::FETCH_ASSOC)){
-                        $response[$i] = $list;
+                        $response['comments'][$i] = $list;
 
                         $i++;
                     }
