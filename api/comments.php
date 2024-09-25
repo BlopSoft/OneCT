@@ -75,7 +75,7 @@
                     
                     $post = $db->query("SELECT * FROM comments WHERE id = " .(int)$id)->fetch();
 
-                    if($post['id_user'] == $user_data['id'] or $user_data['priv'] >= 2){
+                    if($post['user_id'] == $user_data['id'] or $user_data['priv'] >= 2){
                         $db->query("DELETE FROM comments WHERE id = " .(int)$id);
                         $response = array(1);
                     } else {
